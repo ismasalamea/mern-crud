@@ -61,7 +61,7 @@ class CustomTable extends PureComponent {
 		const { labels, headers } = this.props;
 
 		const headerIndex = headers.indexOf(header);
-		const label = labels[headerIndex]+1;
+		const label = labels[headerIndex];
 
 		return data.sort(this.dynamicsort(label, this.state[header] === "asc" ? "desc" : "asc"));
 	};

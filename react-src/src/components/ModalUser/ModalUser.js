@@ -15,7 +15,7 @@ class ModalUser extends Component {
       </Button>}
       
       dimmer='inverted'
-        size='small'
+        size='medium'
         closeIcon
       >
         

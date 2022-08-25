@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Message, Button, Form, Select } from 'semantic-ui-react';
+import { Message, Button, Form, Select, Header} from 'semantic-ui-react';
 import axios from 'axios';
 
 const estadoOptions = [
@@ -145,9 +145,12 @@ class FormUser extends Component {
 
     return (
       <Form className={formClassName} onSubmit={this.handleSubmit}>
-                <Form.Group>
+                <Header as='h3' block color='orange'>
+    Datos del Fallecido
+  </Header>
+        <Form.Group widths='equal'>
         <Form.Input widths='equal'
-      //      width={3} 
+            width={5} 
             label='Boveda'
             type='text'
             size='4'
@@ -159,6 +162,7 @@ class FormUser extends Component {
             onChange={this.handleInputChange}
           />
         <Form.Input
+          width={8} 
           label='Fecha de Defuncion'
           name='fecha'
           type='date'
@@ -168,27 +172,6 @@ class FormUser extends Component {
           value={this.state.fecha.split("T")[0]}
           onChange={this.handleInputChange}
         />
-         <Form.Input
-            width={3} 
-            label='Valor'
-            type='number'
-            placeholder='0,00'
-            name='valor'
-            maxLength='8'
-            required
-            value={this.state.valor}
-            onChange={this.handleInputChange}
-         />
-        <Form.Field
-          control={Select}
-          label='Estado'
-          options={estadoOptions}
-          placeholder=''
-          value={this.state.estado}
-          onChange={this.handleSelectChange}
-        />
-        </Form.Group>
-        <Form.Group widths='equal'>
           <Form.Input
             label='Nombres del fallecido'
             type='text'
@@ -210,9 +193,13 @@ class FormUser extends Component {
             onChange={this.handleInputChange}
           />
         </Form.Group>
+        <Header as='h3' block color='purple'>
+    Datos del Responsable
+  </Header>
+        <Form.Group widths='equal'>
         <Form.Input
           width='5'
-          label='Cedula del Responsable'
+          label='Cedula'
           type='text'
           placeholder='0104751987'
           name='cedula'
@@ -231,6 +218,8 @@ class FormUser extends Component {
           value={this.state.responsable}
           onChange={this.handleInputChange}
         />
+                </Form.Group>
+                <Form.Group>        
         <Form.Input
           width={5} 
           label='Telefono'
@@ -243,6 +232,26 @@ class FormUser extends Component {
           onChange={this.handleInputChange}
         />
 
+         <Form.Input
+            width={3} 
+            label='Valor'
+            type='number'
+            placeholder='0,00'
+            name='valor'
+            maxLength='8'
+            required
+            value={this.state.valor}
+            onChange={this.handleInputChange}
+         />
+        <Form.Field
+          control={Select}
+          label='Estado'
+          options={estadoOptions}
+          placeholder=''
+          value={this.state.estado}
+          onChange={this.handleSelectChange}
+        />
+        </Form.Group>
 
         <Message
           success
