@@ -145,9 +145,12 @@ class FormUser extends Component {
 
     return (
       <Form className={formClassName} onSubmit={this.handleSubmit}>
-        <Form.Input
-            label='Bodeda'
+                <Form.Group>
+        <Form.Input widths='equal'
+      //      width={3} 
+            label='Boveda'
             type='text'
+            size='4'
             placeholder='A-001'
             name='boveda'
             maxLength='40'
@@ -155,28 +158,6 @@ class FormUser extends Component {
             value={this.state.boveda}
             onChange={this.handleInputChange}
           />
-        <Form.Group widths='equal'>
-          <Form.Input
-            label='Nombre'
-            type='text'
-            placeholder='Pepito'
-            name='nombre'
-            maxLength='40'
-            required
-            value={this.state.nombre}
-            onChange={this.handleInputChange}
-          />
-          <Form.Input
-            label='Apellido'
-            type='text'
-            placeholder='Perez'
-            name='apellido'
-            maxLength='40'
-            required
-            value={this.state.apellido}
-            onChange={this.handleInputChange}
-          />
-        </Form.Group>
         <Form.Input
           label='Fecha de Defuncion'
           name='fecha'
@@ -187,8 +168,51 @@ class FormUser extends Component {
           value={this.state.fecha.split("T")[0]}
           onChange={this.handleInputChange}
         />
+         <Form.Input
+            width={3} 
+            label='Valor'
+            type='number'
+            placeholder='0,00'
+            name='valor'
+            maxLength='8'
+            required
+            value={this.state.valor}
+            onChange={this.handleInputChange}
+         />
+        <Form.Field
+          control={Select}
+          label='Estado'
+          options={estadoOptions}
+          placeholder=''
+          value={this.state.estado}
+          onChange={this.handleSelectChange}
+        />
+        </Form.Group>
+        <Form.Group widths='equal'>
+          <Form.Input
+            label='Nombres del fallecido'
+            type='text'
+            placeholder='Pepito'
+            name='nombre'
+            maxLength='40'
+            required
+            value={this.state.nombre}
+            onChange={this.handleInputChange}
+          />
+          <Form.Input
+            label='Apellidos del fallecido'
+            type='text'
+            placeholder='Perez'
+            name='apellido'
+            maxLength='40'
+            required
+            value={this.state.apellido}
+            onChange={this.handleInputChange}
+          />
+        </Form.Group>
         <Form.Input
-          label='Cedula'
+          width='5'
+          label='Cedula del Responsable'
           type='text'
           placeholder='0104751987'
           name='cedula'
@@ -198,7 +222,7 @@ class FormUser extends Component {
           onChange={this.handleInputChange}
         />
         <Form.Input
-          label='Responsable'
+          label='Nombre del Responsable'
           type='text'
           placeholder='Nombres y Apellidos'
           min={5}
@@ -208,33 +232,18 @@ class FormUser extends Component {
           onChange={this.handleInputChange}
         />
         <Form.Input
+          width={5} 
           label='Telefono'
           type='text'
           placeholder='Telefono'
           min={3}
-          max={20}
+          max={10}
           name='telefono'
           value={this.state.telefono}
           onChange={this.handleInputChange}
         />
-        <Form.Field
-          control={Select}
-          label='Estado'
-          options={estadoOptions}
-          placeholder=''
-          value={this.state.estado}
-          onChange={this.handleSelectChange}
-        />
-         <Form.Input
-            label='Valor Adeudado'
-            type='number'
-            placeholder='0,00'
-            name='valor'
-            maxLength='8'
-            required
-            value={this.state.valor}
-            onChange={this.handleInputChange}
-         />
+
+
         <Message
           success
           color='blue'

@@ -15,8 +15,8 @@ class ModalUser extends Component {
       </Button>}
       
       dimmer='inverted'
-        size='tiny'
-        closeIcon='open'
+        size='small'
+        closeIcon
       >
         
         <Modal.Header>{this.props.headerTitle}</Modal.Header>

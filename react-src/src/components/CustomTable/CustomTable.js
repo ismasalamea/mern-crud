@@ -61,7 +61,7 @@ class CustomTable extends PureComponent {
 		const { labels, headers } = this.props;
 
 		const headerIndex = headers.indexOf(header);
-		const label = labels[headerIndex];
+		const label = labels[headerIndex]+1;
 
 		return data.sort(this.dynamicsort(label, this.state[header] === "asc" ? "desc" : "asc"));
 	};
@@ -157,7 +157,7 @@ class CustomTable extends PureComponent {
 						 <Button.Group>
 							<ModalUser
             					headerTitle='Editar'
-            					buttonTriggerTitle='Editar'
+            					buttonTriggerTitle=''
             					buttonSubmitTitle='Guardar'
             					buttonColor='white'
             					userID={item._id}
@@ -166,7 +166,7 @@ class CustomTable extends PureComponent {
           					/>
           					<ModalConfirmDelete
             					headerTitle='Eliminar'
-            					buttonTriggerTitle='Eliminar'
+            					buttonTriggerTitle=''
             					buttonColor='white'
             					user={item}
             					onUserDeleted={this.props.onUserDeleted}

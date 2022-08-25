@@ -23,8 +23,8 @@ export default class Tablita extends Component {
 				          <Grid>
             <Grid.Column width={6}>
           <ModalUser
-            headerTitle='Anadir Usuario'
-            buttonTriggerTitle='Anadir Nuevo'
+            headerTitle='Añadir Boveda'
+            buttonTriggerTitle='Añadir Boveda'
             buttonSubmitTitle='Anadir'
             buttonColor='black'
             onUserAdded={this.props.onUserAdded}
