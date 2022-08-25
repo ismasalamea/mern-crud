@@ -1,5 +1,5 @@
 import React, { PureComponent } from "react";
-import { Icon, Menu, Table } from "semantic-ui-react";
+import { Icon, Menu, Table, Button } from "semantic-ui-react";
 import ModalUser from "../ModalUser/ModalUser";
 import ModalConfirmDelete from '../ModalConfirmDelete/ModalConfirmDelete';
 import Styles from "./style.module.css";
@@ -154,10 +154,10 @@ class CustomTable extends PureComponent {
 								<div className={Styles.cell}>{ label==="fecha" ? item[label].split("T")[0]: item[label] || ""}</div>
 							</Table.Cell>
 						))}
-
+						 <Button.Group>
 							<ModalUser
             					headerTitle='Editar'
-            					buttonTriggerTitle=''
+            					buttonTriggerTitle='Editar'
             					buttonSubmitTitle='Guardar'
             					buttonColor='white'
             					userID={item._id}
@@ -166,12 +166,13 @@ class CustomTable extends PureComponent {
           					/>
           					<ModalConfirmDelete
             					headerTitle='Eliminar'
-            					buttonTriggerTitle=''
+            					buttonTriggerTitle='Eliminar'
             					buttonColor='white'
             					user={item}
             					onUserDeleted={this.props.onUserDeleted}
 								server={this.props.server}
           					/>
+						</Button.Group>
 					</Table.Row>
 				))}
 			</Table.Body>

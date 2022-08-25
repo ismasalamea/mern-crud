@@ -145,8 +145,7 @@ class FormUser extends Component {
 
     return (
       <Form className={formClassName} onSubmit={this.handleSubmit}>
-        <Form.Group widths='equal'>
-          <Form.Input
+        <Form.Input
             label='Bodeda'
             type='text'
             placeholder='A-001'
@@ -156,6 +155,7 @@ class FormUser extends Component {
             value={this.state.boveda}
             onChange={this.handleInputChange}
           />
+        <Form.Group widths='equal'>
           <Form.Input
             label='Nombre'
             type='text'

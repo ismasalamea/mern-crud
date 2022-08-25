@@ -7,12 +7,14 @@ class ModalUser extends Component {
 
   render() {
     return (
-      <Modal
-        trigger={<Button color={this.props.buttonColor}>
-        <Icon color='yellow' name='edit' size='large' />
+      <Modal trigger={
+      
+      <Button color={this.props.buttonColor} icon size='mini'>
+        <Icon color='yellow' name='edit' size='small' />
           {this.props.buttonTriggerTitle}
-          </Button>}
-        dimmer='inverted'
+      </Button>}
+      
+      dimmer='inverted'
         size='tiny'
         closeIcon='open'
       >
