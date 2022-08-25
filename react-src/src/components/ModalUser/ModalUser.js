@@ -18,6 +18,7 @@ class ModalUser extends Component {
         size='tiny'
         closeIcon='open'
       >
+        
         <Modal.Header>{this.props.headerTitle}</Modal.Header>
         <Modal.Content>
           <FormUser
