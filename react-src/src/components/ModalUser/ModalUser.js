@@ -10,7 +10,7 @@ class ModalUser extends Component {
       <Modal trigger={
       
       <Button color={this.props.buttonColor} icon size='mini'>
-        <Icon color='yellow' name='edit' size='small' />
+        <Icon color='blue' name='user' />
           {this.props.buttonTriggerTitle}
       </Button>}
       

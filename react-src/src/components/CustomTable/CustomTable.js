@@ -151,7 +151,9 @@ class CustomTable extends PureComponent {
 	
 						{(labels || []).map((label, index) => (
 							<Table.Cell key={item._id}>
-								<div className={Styles.cell}>{ label==="fecha" ? item[label].split("T")[0]: item[label] || ""}</div>
+								<div className={Styles.cell}>
+								{ label==="fecha" ? item[label].split("T")[0]: item[label] || ""}
+								</div>
 							</Table.Cell>
 						))}
 						 <Button.Group>

@@ -73,7 +73,7 @@ class App extends Component {
         <Container>
           <Tablita 
             data={this.state.users}
-            users={this.state.users}            
+  //          users={this.state.users}            
             onUserAdded={this.handleUserAdded}
             onUserUpdated={this.handleUserUpdated}
             onUserDeleted={this.handleUserDeleted}

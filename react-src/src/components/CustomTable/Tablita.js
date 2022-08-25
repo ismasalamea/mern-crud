@@ -4,6 +4,7 @@ import { Input, Grid } from "semantic-ui-react";
 import Styles from "./style.module.css";
 //import { data } from "./Datos";
 import ModalUser from '../ModalUser/ModalUser';
+import ModalTotal from "../ModalTotal/ModalTotal";
 export default class Tablita extends Component {
 	state = {
 		search: "",
@@ -20,19 +21,30 @@ export default class Tablita extends Component {
 		const { search } = this.state;
 		return (
 			<div className={Styles.container}>
-				          <Grid>
-            <Grid.Column width={6}>
+		<Grid columns={3} >
+            <Grid.Column >
           <ModalUser
             headerTitle='Añadir Boveda'
-            buttonTriggerTitle='Añadir Boveda'
+            buttonTriggerTitle=' Añadir Boveda'
             buttonSubmitTitle='Anadir'
-            buttonColor='black'
+            buttonColor='gray'
             onUserAdded={this.props.onUserAdded}
 			server={this.props.server}
-			/> 
+			/>
+			</Grid.Column> 
+			  <Grid.Column >
+			  	<ModalTotal
+					headerTitle='Totales Registrados'
+					buttonTriggerTitle='Totales Registrados'
+            		buttonColor='white'	
+					labels={["boveda","nombre", "apellido", "fecha", "cedula", "responsable", "telefono", "valor"]}
+					data={this.props.data}	
+					server={this.props.server}						
+				>	
+				</ModalTotal>
             </Grid.Column>
-            <Grid.Column width={6}>
-				<Input
+            <Grid.Column >	
+				<Input label='Palabra clave: '
 					placeholder={"Buscar"}
 					onChange={this.handleInputs}
 					value={search}
