@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const RateLimit = require('express-rate-limit');
 const mongoose = require('mongoose');
-const stringCapitalizeName = require('string-capitalize-name');
+//const stringCapitalizeName = require('string-capitalize-name');
 
 const User = require('../models/user');
 
@@ -43,13 +43,15 @@ router.get('/', (req, res) => {
 router.post('/', postLimiter, (req, res) => {
 
   let newUser = new User({
+    boveda:         req.body.boveda,
     nombre:         req.body.nombre,
     apellido:       req.body.apellido,
     fecha:          req.body.fecha,
     cedula:         req.body.cedula,
     responsable:    req.body.responsable,
     telefono:       req.body.telefono,
-    estado:         req.body.estado
+    estado:         req.body.estado,
+    valor:          req.body.valor
   });
 
   newUser.save()
@@ -59,19 +61,25 @@ router.post('/', postLimiter, (req, res) => {
         msg: `Registro Agregado!`,
         result: {
           _id:      result._id,
+          boveda:   result.boveda,
           nombre:   result.nombre,
           apellido: result.apellido,
           fecha:    result.fecha,
           cedula:   result.cedula,
           responsable:   result.responsable,
           telefono:   result.telefono,     
-          estado:   result.estado
+          estado:   result.estado,
+          valor: result.valor
         }
       });
     })
     .catch((err) => {
       console.log(err);
       if (err.errors) {
+        if (err.errors.boveda) {
+          res.status(400).json({ success: false, msg: err.errors.boveda.message });
+          return;
+        }
         if (err.errors.nombre) {
           res.status(400).json({ success: false, msg: err.errors.nombre.message });
           return;
@@ -100,6 +108,10 @@ router.post('/', postLimiter, (req, res) => {
           res.status(400).json({ success: false, msg: err.errors.estado.message });
           return;
         }
+        if (err.errors.valor) {
+          res.status(400).json({ success: false, msg: err.errors.valor.message });
+          return;
+        }
         // Show failed if all else fails for some reasons
         res.status(500).json({ success: false, msg: `Algo esta mal ${err}` });
       }
@@ -111,13 +123,15 @@ router.put('/:id', (req, res) => {
 
 
   let updatedUser = {
+    boveda:         req.body.boveda,
     nombre:         req.body.nombre,
     apellido:       req.body.apellido,
     fecha:          req.body.fecha,
     cedula:         req.body.cedula,
     responsable:    req.body.responsable,
     telefono:       req.body.telefono,
-    estado:         req.body.estado
+    estado:         req.body.estado,
+    valor:          req.body.valor
   };
 
   User.findOneAndUpdate({ _id: req.params.id }, updatedUser, { runValidators: true, context: 'query' })
@@ -127,16 +141,19 @@ router.put('/:id', (req, res) => {
           res.json({
             success: true,
             msg: `Registro Actualizado!`,
-            result: {
+            result: 
+            {
               _id: newResult._id,
-              nombre:   newResult.nombre,
-              apellido: newResult.apellido,
-              fecha:    newResult.fecha,
-              cedula:   newResult.cedula,
-              responsable:   newResult.responsable,
-              telefono:   newResult.telefono,        
-              estado:   newResult.estado
-                }
+              boveda:         newResult.boveda,
+              nombre:         newResult.nombre,
+              apellido:       newResult.apellido,
+              fecha:          newResult.fecha,
+              cedula:         newResult.cedula,
+              responsable:    newResult.responsable,
+              telefono:       newResult.telefono,        
+              estado:         newResult.estado,
+              valor:          newResult.valor
+            }
           });
         })
         .catch((err) => {
@@ -146,6 +163,10 @@ router.put('/:id', (req, res) => {
     })
     .catch((err) => {
       if (err.errors) {
+        if (err.errors.boveda) {
+          res.status(400).json({ success: false, msg: err.errors.boveda.message });
+          return;
+        }
         if (err.errors.nombre) {
           res.status(400).json({ success: false, msg: err.errors.nombre.message });
           return;
@@ -174,6 +195,11 @@ router.put('/:id', (req, res) => {
           res.status(400).json({ success: false, msg: err.errors.telefono.message });
           return;
         }
+        if (err.errors.valor) {
+          res.status(400).json({ success: false, msg: err.errors.valor.message });
+          return;
+        }
+
         // Show failed if all else fails for some reasons
         res.status(500).json({ success: false, msg: `Algo salios mal. ${err}` });
       }
@@ -189,14 +215,16 @@ router.delete('/:id', (req, res) => {
         success: true,
         msg: `Registro eliminado.`,
         result: {
-          _id: result._id,
-          nombre: result.nombre,
-          apellido: result.apellido,
-          fecha: result.fecha,
-          cedula: result.cedula,
-          responsable: result.responsable,
-          telefono: result.telefono,
-          estado: result.estado
+          _id:          result._id,
+          boveda:       result.boveda,
+          nombre:       result.nombre,
+          apellido:     result.apellido,
+          fecha:        result.fecha,
+          cedula:       result.cedula,
+          responsable:  result.responsable,
+          telefono:     result.telefono,
+          estado:       result.estado,
+          valor:        result.nombre
         }
       });
     })
@@ -206,25 +234,3 @@ router.delete('/:id', (req, res) => {
 });
 
 module.exports = router;
-
-// Minor sanitizing to be invoked before reaching the database
- /*sanitizeNombre = (nombre) => {
-  return stringCapitalizeName(nombre);
-}
-
-sanitizeApellido = (apellido) => {
-  return stringCapitalizeName(apellido);
-}
-
-sanitizeCorreo = (correo) => {
-  return correo.toLowerCase();
-}
-sanitizeEdad = (edad) => {
-  // Return empty if age is non-numeric
-  if (isNaN(edad) && edad != '') return '';
-  return (edad === '') ? edad : parseInt(edad);
-}
-sanitizeGenero = (genero) => {
-  // Return empty if it's neither of the two
-  return (genero === 'M' || genero === 'F') ? genero : '';
-}*/

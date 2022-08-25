@@ -13,12 +13,15 @@ class FormUser extends Component {
     super(props);
 
     this.state = {
+      boveda: '',
       nombre: '',
       apellido: '',
       fecha: '',
       cedula: '',
       responsable: '',
       telefono: '',
+      estado: '',
+      valor: '',
       formClassName: '',
       formSuccessMessage: '',
       formErrorMessage: ''
@@ -37,13 +40,15 @@ class FormUser extends Component {
       axios.get(`${this.props.server}/api/users/${this.props.userID}`)
         .then((response) => {
           this.setState({
+            boveda: response.data.boveda,
             nombre: response.data.nombre,
             apellido: response.data.apellido,
             fecha: response.data.fecha,
             cedula: response.data.cedula,
             responsable: response.data.responsable,
             telefono: response.data.telefono,
-            estado: response.data.estado
+            estado: response.data.estado,
+            valor: response.data.valor
           });
         })
         .catch((err) => {
@@ -68,13 +73,15 @@ class FormUser extends Component {
     e.preventDefault();
 
     const user = {
+      boveda: this.state.boveda,
       nombre: this.state.nombre,
       apellido: this.state.apellido,
       fecha: this.state.fecha,
       cedula: this.state.cedula,
       responsable: this.state.responsable,
       telefono: this.state.telefono,
-      estado: this.state.estado
+      estado: this.state.estado,
+      valor: this.state.valor
     }
 
     // Acknowledge that if the user id is provided, we're updating via PUT
@@ -95,13 +102,15 @@ class FormUser extends Component {
         });
         if (!this.props.userID) {
           this.setState({
+            boveda: '',
             nombre: '',
             apellido: '',
             fecha: '',
             cedula: '',
             responsable: '',
             telefono: '',
-            estado: ''
+            estado: '',
+            valor:''
           });
           this.props.onUserAdded(response.data.result);
         }
@@ -137,6 +146,16 @@ class FormUser extends Component {
     return (
       <Form className={formClassName} onSubmit={this.handleSubmit}>
         <Form.Group widths='equal'>
+          <Form.Input
+            label='Bodeda'
+            type='text'
+            placeholder='A-001'
+            name='boveda'
+            maxLength='40'
+            required
+            value={this.state.boveda}
+            onChange={this.handleInputChange}
+          />
           <Form.Input
             label='Nombre'
             type='text'
@@ -206,9 +225,19 @@ class FormUser extends Component {
           value={this.state.estado}
           onChange={this.handleSelectChange}
         />
+         <Form.Input
+            label='Valor Adeudado'
+            type='number'
+            placeholder='0,00'
+            name='valor'
+            maxLength='8'
+            required
+            value={this.state.valor}
+            onChange={this.handleInputChange}
+         />
         <Message
           success
-          color='red'
+          color='blue'
           header='Mensaje:'
           content={formSuccessMessage}
         />

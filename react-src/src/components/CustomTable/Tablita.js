@@ -32,7 +32,7 @@ export default class Tablita extends Component {
 			/> 
             </Grid.Column>
             <Grid.Column width={6}>
-			<Input
+				<Input
 					placeholder={"Buscar"}
 					onChange={this.handleInputs}
 					value={search}
@@ -44,9 +44,9 @@ export default class Tablita extends Component {
             </Grid>
 				<CustomTable
 					data={this.props.data}
-					headers={["Estado","Nombre", "Apellido", "Fecha", "Cedula", "Responsable", "Telefono", "Acciones"]}
-					labels={["nombre", "apellido", "fecha", "cedula", "responsable", "telefono"]}
-					pageRows={10} //Optional
+					headers={["Estado","Boveda", "Nombre", "Apellido", "Fecha", "Cedula", "Responsable", "Telefono", "Valor","Acciones"]}
+					labels={["boveda","nombre", "apellido", "fecha", "cedula", "responsable", "telefono", "valor"]}
+					pageRows={20} //Optional
 					searchQuery={search} //Optional
 					footerPages={10} //Optional
 					onUserUpdated={this.props.onUserUpdated}
