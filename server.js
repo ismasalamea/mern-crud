@@ -63,26 +63,3 @@ const port = process.env.PORT || 3000;
 const server = app.listen(port, () => {
   console.log(`Listening on port ${port}`);
 });
-
-// Set up socket.io
-/*
-const io = socket(server);
-let online = 0;
-
-io.on('connection', (socket) => {
-  online++;
-  console.log(`Socket ${socket.id} connected.`);
-  console.log(`Online: ${online}`);
-  io.emit('visitor enters', online);
-
-  socket.on('add', data => socket.broadcast.emit('add', data));
-  socket.on('update', data => socket.broadcast.emit('update', data));
-  socket.on('delete', data => socket.broadcast.emit('delete', data));
-
-  socket.on('disconnect', () => {
-    online--;
-    console.log(`Socket ${socket.id} disconnected.`);
-    console.log(`Online: ${online}`);
-    io.emit('visitor exits', online);
-  });
-});*/

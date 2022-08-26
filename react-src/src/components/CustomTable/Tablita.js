@@ -37,9 +37,7 @@ export default class Tablita extends Component {
 					headerTitle='Totales Registrados'
 					buttonTriggerTitle='Totales Registrados'
             		buttonColor='white'	
-					labels={["boveda","nombre", "apellido", "fecha", "cedula", "responsable", "telefono", "valor"]}
-					data={this.props.data}	
-					server={this.props.server}						
+					data={this.props.data}						
 				>	
 				</ModalTotal>
             </Grid.Column>
