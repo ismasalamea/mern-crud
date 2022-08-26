@@ -152,7 +152,7 @@ class CustomTable extends PureComponent {
 						{(labels || []).map((label, index) => (
 							<Table.Cell key={item._id}>
 								<div className={Styles.cell}>
-								{ label==="fecha" ? item[label].split("T")[0]: item[label] || ""}
+								{ label==="fecha" ? item[label].split("T")[0]: item[label] || 0}
 								</div>
 							</Table.Cell>
 						))}

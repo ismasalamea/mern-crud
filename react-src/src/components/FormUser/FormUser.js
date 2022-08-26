@@ -149,7 +149,7 @@ class FormUser extends Component {
     Datos del Fallecido
   </Header>
         <Form.Group widths='equal'>
-        <Form.Input widths='equal'
+        <Form.Input
             width={5} 
             label='Boveda'
             type='text'
@@ -193,6 +193,13 @@ class FormUser extends Component {
             onChange={this.handleInputChange}
           />
         </Form.Group>
+        <Form.Input
+            label='Certificado de defuncion'
+            type='file'
+            name='certificado'
+            value={this.state.certificado}
+            onChange={this.handleInputChange}
+          />        
         <Header as='h3' block color='purple'>
     Datos del Responsable
   </Header>
@@ -228,6 +235,7 @@ class FormUser extends Component {
           min={3}
           max={10}
           name='telefono'
+          required
           value={this.state.telefono}
           onChange={this.handleInputChange}
         />
