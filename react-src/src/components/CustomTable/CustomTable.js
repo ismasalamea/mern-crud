@@ -161,7 +161,7 @@ class CustomTable extends PureComponent {
             					headerTitle='Editar'
             					buttonTriggerTitle=''
             					buttonSubmitTitle='Guardar'
-            					buttonColor='white'
+            					buttonColor='blue'
             					userID={item._id}
             					onUserUpdated={this.props.onUserUpdated}
 								server={this.props.server}

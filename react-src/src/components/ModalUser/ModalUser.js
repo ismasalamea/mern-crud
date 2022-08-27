@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Button, Modal, Icon } from 'semantic-ui-react';
-
 import FormUser from '../FormUser/FormUser';
 
 class ModalUser extends Component {
@@ -10,7 +9,7 @@ class ModalUser extends Component {
       <Modal trigger={
       
       <Button color={this.props.buttonColor} icon size='mini'>
-        <Icon color='blue' name='user' />
+        <Icon color='white' name='user' />
           {this.props.buttonTriggerTitle}
       </Button>}
       

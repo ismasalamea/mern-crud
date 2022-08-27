@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Message, Button, Form, Select, Header} from 'semantic-ui-react';
+import ShowPDF from '../ShowPDF/ShowPDF';
 import axios from 'axios';
 
 const estadoOptions = [
@@ -273,7 +274,9 @@ class FormUser extends Component {
           header='Advertenciasss!'
           content={formErrorMessage}
         />
+        <ShowPDF valores={this.state}/>
         <Button color={this.props.buttonColor} floated='right'>{this.props.buttonSubmitTitle}</Button>
+
         <br /><br /> {/* Yikes! Deal with Semantic UI React! */}
       </Form>
     );

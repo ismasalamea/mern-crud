@@ -21,48 +21,48 @@ export default class Tablita extends Component {
 		const { search } = this.state;
 		return (
 			<div className={Styles.container}>
-		<Grid columns={3} >
+			<Grid columns={3} >
             <Grid.Column >
-          <ModalUser
-            headerTitle='Añadir Boveda'
-            buttonTriggerTitle=' Añadir Boveda'
-            buttonSubmitTitle='Anadir'
-            buttonColor='gray'
-            onUserAdded={this.props.onUserAdded}
-			server={this.props.server}
+          	<ModalUser
+            	headerTitle='Añadir Boveda'
+            	buttonTriggerTitle=' Añadir Boveda'
+            	buttonSubmitTitle='Anadir'
+            	buttonColor='blue'
+            	onUserAdded={this.props.onUserAdded}
+				server={this.props.server}
 			/>
 			</Grid.Column> 
-			  <Grid.Column >
-			  	<ModalTotal
-					headerTitle='Totales Registrados'
-					buttonTriggerTitle='Totales Registrados'
-            		buttonColor='white'	
-					data={this.props.data}						
-				>	
-				</ModalTotal>
+			<Grid.Column >
+			<ModalTotal
+				headerTitle='Totales Registrados'
+				buttonTriggerTitle='Totales Registrados'
+            	buttonColor='white'	
+				data={this.props.data}						
+			>	
+			</ModalTotal>
             </Grid.Column>
             <Grid.Column >	
-				<Input label='Palabra clave: '
-					placeholder={"Buscar"}
-					onChange={this.handleInputs}
-					value={search}
-					name={"search"}
-					icon={"search"}
-					style={{ width: "250px" }}
-				></Input>
+			<Input label='Palabra clave: '
+				placeholder={"Buscar"}
+				onChange={this.handleInputs}
+				value={search}
+				name={"search"}
+				icon={"search"}
+				style={{ width: "250px" }}
+			></Input>
             </Grid.Column>
             </Grid>
-				<CustomTable
-					data={this.props.data}
-					headers={["Estado","Boveda", "Nombre", "Apellido", "Fecha", "Cedula", "Responsable", "Valor","Acciones"]}
-					labels={["boveda","nombre", "apellido", "fecha", "cedula", "responsable", "valor"]}
-					pageRows={20} //Optional
-					searchQuery={search} //Optional
-					footerPages={10} //Optional
-					onUserUpdated={this.props.onUserUpdated}
-					onUserDeleted={this.props.onUserDeleted}
-					server={this.props.server}
-				/>
+			<CustomTable
+				data={this.props.data}
+				headers={["Estado","Boveda", "Nombre", "Apellido", "Fecha", "Cedula", "Responsable", "Valor","Acciones"]}
+				labels={["boveda","nombre", "apellido", "fecha", "cedula", "responsable", "valor"]}
+				pageRows={20} //Optional
+				searchQuery={search} //Optional
+				footerPages={10} //Optional
+				onUserUpdated={this.props.onUserUpdated}
+				onUserDeleted={this.props.onUserDeleted}
+				server={this.props.server}
+			/>
 			</div>
 		);
 	}
