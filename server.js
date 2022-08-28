@@ -50,7 +50,7 @@ app.use('/api/users', require('./routes/users'));
 
 //////////////////////////////////////////////////////////////////API cargar archivos PDF al servidor
 app.post("/api/upload", (req, res) => {
-  const newpath = __dirname + "/files/";
+  const newpath = __dirname + "/public/files/";
   const file = req.files.file;
   const filename = file.name;
 //  console.log(filename, newpath);
