@@ -154,10 +154,9 @@ class FormUser extends Component {
             width={5} 
             label='Boveda'
             type='text'
-            size='4'
+            maxLength='4'
             placeholder='A-001'
             name='boveda'
-            maxLength='40'
             required
             value={this.state.boveda}
             onChange={this.handleInputChange}
@@ -273,12 +272,12 @@ class FormUser extends Component {
           header='Advertenciasss!'
           content={formErrorMessage}
         />
-        <Button.Group widths='equals' floated='right'>
+        <Button.Group widths='two' floated='right'>
         <ShowPDF 
           valores={this.state}
         /> 
         <Button name='user' color={this.props.buttonColor} floated='right'>
-          <Icon color='white' name='user' />
+          <Icon color='olive' name='user' />
             {this.props.buttonSubmitTitle}
           </Button>      
         </Button.Group>

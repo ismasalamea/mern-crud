@@ -2,17 +2,17 @@ import React, { Component } from 'react';
 import { Button, Modal, Icon, Header } from 'semantic-ui-react';
 import FormUser from '../FormUser/FormUser';
 
+
 class ModalUser extends Component {
 
   render() {
     return (
       <Modal  trigger={ 
       <Button color={this.props.buttonColor} icon size='mini'>
-        <Icon color='white' name='user' />
+        <Icon color='olive' name='user' />
           {this.props.buttonTriggerTitle}
       </Button>}
         dimmer='inverted'
-        size='medium'
         closeIcon
       >
         <Header icon='user' content={this.props.headerTitle} />

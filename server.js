@@ -1,15 +1,12 @@
 const express = require('express');
+const fileupload = require("express-fileupload");
 const path = require('path');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const mongoose = require('mongoose');
-const socket = require('socket.io');
-
 const config = require('./config/db');
-
 // Use Node's default promise instead of Mongoose's promise library
 mongoose.Promise = global.Promise;
-
 // Connect to the database
 mongoose.connect(config.db, {
   useNewUrlParser: true,
@@ -47,9 +44,24 @@ app.use(bodyParser.json());
 if (process.env.CORS) {
   app.use(cors());
 }
-
+app.use(fileupload());
 // Initialize routes middleware
 app.use('/api/users', require('./routes/users'));
+
+//////////////////////////////////////////////////////////////////API cargar archivos PDF al servidor
+app.post("/api/upload", (req, res) => {
+  const newpath = __dirname + "/upload/";
+  const file = req.files.file;
+  const filename = file.name;
+  console.log(filename, newpath);
+  file.mv(`${newpath}${filename}`, (err) => {
+    if (err) {
+      res.status(500).send({ message: "File upload failed", code: 200 });
+    }
+    res.status(200).send({ message: "File Uploaded", code: 200 });
+  });
+});
+
 
 // Use express's default error handling middleware
 app.use((err, req, res, next) => {

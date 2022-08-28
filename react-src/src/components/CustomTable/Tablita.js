@@ -5,6 +5,7 @@ import Styles from "./style.module.css";
 //import { data } from "./Datos";
 import ModalUser from '../ModalUser/ModalUser';
 import ModalTotal from "../ModalTotal/ModalTotal";
+import Upload from "../FormUser/Upload";
 export default class Tablita extends Component {
 	state = {
 		search: "",
@@ -33,10 +34,11 @@ export default class Tablita extends Component {
 			/>
 			</Grid.Column> 
 			<Grid.Column >
+				<Upload></Upload>
 			<ModalTotal
 				headerTitle='Totales Registrados'
 				buttonTriggerTitle='Totales Registrados'
-            	buttonColor='white'	
+            	buttonColor='orange'
 				data={this.props.data}						
 			>	
 			</ModalTotal>
