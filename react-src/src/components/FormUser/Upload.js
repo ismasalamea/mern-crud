@@ -13,7 +13,7 @@ function Upload(server) {
   
   function handleSubmit(event) {
     event.preventDefault()
-    const url = `/api/upload`;
+    const url = 'https://cementeriosayausi.herokuapp.com/api/upload';
     console.log(url)
     const formData = new FormData();
     formData.append('file', file);
