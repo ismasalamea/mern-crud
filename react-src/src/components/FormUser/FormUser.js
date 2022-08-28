@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Message, Button, Form, Select, Header} from 'semantic-ui-react';
+import { Message, Button, Form, Select, Header, Icon} from 'semantic-ui-react';
 import ShowPDF from '../ShowPDF/ShowPDF';
 import axios from 'axios';
 
@@ -88,7 +88,7 @@ class FormUser extends Component {
     // Acknowledge that if the user id is provided, we're updating via PUT
     // Otherwise, we're creating a new data via POST
     const method = this.props.userID ? 'put' : 'post';
-    const params = this.props.userID ? this.props.userID : '';
+    const params  = this.props.userID ? this.props.userID : '';
 
     axios({
       method: method,
@@ -226,8 +226,8 @@ class FormUser extends Component {
           value={this.state.responsable}
           onChange={this.handleInputChange}
         />
-                </Form.Group>
-                <Form.Group>        
+        </Form.Group>
+        <Form.Group>        
         <Form.Input
           width={5} 
           label='Telefono'
@@ -240,7 +240,6 @@ class FormUser extends Component {
           value={this.state.telefono}
           onChange={this.handleInputChange}
         />
-
          <Form.Input
             width={3} 
             label='Valor'
@@ -274,11 +273,19 @@ class FormUser extends Component {
           header='Advertenciasss!'
           content={formErrorMessage}
         />
-        <ShowPDF valores={this.state}/>
-        <Button color={this.props.buttonColor} floated='right'>{this.props.buttonSubmitTitle}</Button>
-
+        <Button.Group widths='equals' floated='right'>
+        <ShowPDF 
+          valores={this.state}
+        /> 
+        <Button name='user' color={this.props.buttonColor} floated='right'>
+          <Icon color='white' name='user' />
+            {this.props.buttonSubmitTitle}
+          </Button>      
+        </Button.Group>
         <br /><br /> {/* Yikes! Deal with Semantic UI React! */}
+        
       </Form>
+               
     );
   }
 }

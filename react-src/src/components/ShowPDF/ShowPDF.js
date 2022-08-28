@@ -57,8 +57,9 @@ class ShowPDF extends Component {
     return(
         <Modal trigger={
       
-            <Button color='red' icon size='mini'>
-              <Icon color='red' name='world' />
+            <Button disabled={ this.props.valores.valor === '' ? true : false } 
+                    color='red' icon size='mini'>
+              <Icon color='white' name='world' />
                 Comprobante
             </Button> }
             

@@ -18,13 +18,11 @@ class ModalTotal extends Component {
             <Button color={this.props.buttonColor} icon size='mini'>
               <Icon color='red' name='world' />
                 {this.props.buttonTriggerTitle}
-            </Button> }
-            
+            </Button> }            
             dimmer='inverted'
               size='small'
               closeIcon
-            >
-        
+            >        
             <Modal.Header>
               <Icon name='chart line' /><Header.Content>{this.props.headerTitle}</Header.Content>
             </Modal.Header>
