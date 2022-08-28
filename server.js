@@ -50,10 +50,10 @@ app.use('/api/users', require('./routes/users'));
 
 //////////////////////////////////////////////////////////////////API cargar archivos PDF al servidor
 app.post("/api/upload", (req, res) => {
-  const newpath = __dirname + "/upload/";
+  const newpath = __dirname + "/files/";
   const file = req.files.file;
   const filename = file.name;
-  console.log(filename, newpath);
+//  console.log(filename, newpath);
   file.mv(`${newpath}${filename}`, (err) => {
     if (err) {
       res.status(500).send({ message: "File upload failed", code: 200 });

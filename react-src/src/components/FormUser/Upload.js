@@ -3,7 +3,7 @@ import React, {useState} from 'react';
 import { Button, Modal, Header, Icon} from 'semantic-ui-react';
 import axios from 'axios';
 
-function Upload() {
+function Upload(server) {
 
   const [file, setFile] = useState()
 
@@ -13,7 +13,8 @@ function Upload() {
   
   function handleSubmit(event) {
     event.preventDefault()
-    const url = 'http://localhost:3000/api/upload';
+    const url = `/api/upload`;
+    console.log(url)
     const formData = new FormData();
     formData.append('file', file);
     formData.append('fileName', file.name);

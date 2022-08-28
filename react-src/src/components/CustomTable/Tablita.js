@@ -34,7 +34,8 @@ export default class Tablita extends Component {
 			/>
 			</Grid.Column> 
 			<Grid.Column >
-				<Upload></Upload>
+				<Upload server={this.props.server}
+				></Upload>
 			<ModalTotal
 				headerTitle='Totales Registrados'
 				buttonTriggerTitle='Totales Registrados'
