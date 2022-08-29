@@ -43,7 +43,7 @@ const fecha = new Date();
     },
     viewer: {
       width: window.innerWidth / 2 , //the pdf viewer will take up all of the width and height
-      height: window.innerHeight / 2,
+      height: window.innerHeight,
     },
   }
   )
@@ -58,8 +58,8 @@ class ShowPDF extends Component {
         <Modal trigger={
       
             <Button disabled={ this.props.valores.valor === '' ? true : false } 
-                    color='blue' icon size='mini'>
-              <Icon color='green' name='world' />
+                    color='black' icon size='mini'>
+              <Icon name='download' />
                 Comprobante
             </Button> }
             
@@ -73,8 +73,8 @@ class ShowPDF extends Component {
         <Document>
           {/*render a single page*/}
           <Page size="A4" style={styles.page}>
-          <Image style={styles.image} 
-            src="https://pbs.twimg.com/profile_images/865258928468348928/CcuVu1lM_400x400.jpg" />
+          <Image style={styles.image} bordered='true' label='Logo'
+            src="https://res.cloudinary.com/curso-node-jism/image/upload/v1661789319/sayausi/logo_qh6nxj.jpg" />
             <View style={styles.titulo}>
               <Text>Comprobante: </Text>
               <Text>Cementerio del GAD de Sayausi</Text>

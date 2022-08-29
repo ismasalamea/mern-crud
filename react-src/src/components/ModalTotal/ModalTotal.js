@@ -5,7 +5,7 @@ class ModalTotal extends Component {
 
     getLengthOfObject = (obj) => { 
         let lengthOfObject = Object.keys(obj).length; 
-        console.log(lengthOfObject);
+//        console.log(lengthOfObject);
         return lengthOfObject;
       }
     
@@ -15,8 +15,8 @@ class ModalTotal extends Component {
         return( 
         <Modal trigger={
       
-            <Button color={this.props.buttonColor} icon size='mini'>
-              <Icon color='red' name='world' />
+            <Button color={this.props.buttonColor} icon>
+              <Icon name='chart line' />
                 {this.props.buttonTriggerTitle}
             </Button> }            
               dimmer='inverted'

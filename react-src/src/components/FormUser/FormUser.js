@@ -277,7 +277,7 @@ class FormUser extends Component {
           valores={this.state}
         /> 
         <Button name='user' color={this.props.buttonColor} floated='right'>
-          <Icon color='olive' name='user' />
+          <Icon name='save' />
             {this.props.buttonSubmitTitle}
           </Button>      
         </Button.Group>

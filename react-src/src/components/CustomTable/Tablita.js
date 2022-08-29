@@ -28,7 +28,7 @@ export default class Tablita extends Component {
             	headerTitle='Añadir Boveda'
             	buttonTriggerTitle=' Añadir Boveda'
             	buttonSubmitTitle='Anadir'
-            	buttonColor='blue'
+            	buttonColor='red'
             	onUserAdded={this.props.onUserAdded}
 				server={this.props.server}
 			/>
@@ -38,7 +38,7 @@ export default class Tablita extends Component {
 				></Upload>
 			<ModalTotal
 				headerTitle='Totales Registrados'
-				buttonTriggerTitle='Totales Registrados'
+				buttonTriggerTitle=' Totales Registrados'
             	buttonColor='orange'
 				data={this.props.data}						
 			>	

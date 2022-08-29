@@ -31,9 +31,9 @@ function Upload(server) {
 
   return (
     <Modal trigger={
-      <Button color='blue' icon size='mini'>
-          <Icon color='green' name='world' />Cargar 
-        </Button> }
+      <Button color='blue' icon='upload'>
+        <Icon color='black' name='upload' />
+        Cargar  </Button> }
         
         dimmer='inverted'
           size='small'
