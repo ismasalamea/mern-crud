@@ -45,11 +45,14 @@ export default class Tablita extends Component {
 			</ModalTotal>
             </Grid.Column>
             <Grid.Column >	
-			<Input label='Palabra clave: '
-				placeholder={"Buscar"}
+			<Input  
+    			iconPosition='right'
+			fluid label='Buscar: '
+				placeholder={"Escriba ..."}
 				onChange={this.handleInputs}
 				value={search}
 				name={"search"}
+				size='large'
 				icon={"search"}
 				style={{ width: "250px" }}
 			></Input>
