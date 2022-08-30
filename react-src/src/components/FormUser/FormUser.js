@@ -53,7 +53,7 @@ class FormUser extends Component {
             telefono: response.data.telefono,
             estado: response.data.estado,
             valor: response.data.valor,
-            certificado: response.certificado.valor
+            certificado: response.data.certificado
           });
         })
         .catch((err) => {
