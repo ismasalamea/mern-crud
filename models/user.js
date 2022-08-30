@@ -51,8 +51,9 @@ const UserSchema = new mongoose.Schema({
     required: [true, 'Valor Adeudado es requerido.'],
     default: 0
   },
-
-
+  certificado: {
+    type: String
+  }
 });
 
 

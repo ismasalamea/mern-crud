@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
 import { Message, Button, Form, Select, Header, Icon} from 'semantic-ui-react';
 import ShowPDF from '../ShowPDF/ShowPDF';
+import request from 'superagent';
 import axios from 'axios';
+
+const CLOUDINARY_UPLOAD_PRESET = 'bmzjbxoq';
+const CLOUDINARY_UPLOAD_URL = 'https://api.cloudinary.com/v1_1/react-cloudinary/upload';
 
 const estadoOptions = [
   { key: true, text: 'Pagado', value: true },
@@ -23,6 +27,7 @@ class FormUser extends Component {
       telefono: '',
       estado: '',
       valor: '',
+      certificado: '',
       formClassName: '',
       formSuccessMessage: '',
       formErrorMessage: ''
@@ -36,8 +41,6 @@ class FormUser extends Component {
   componentWillMount() {
     // Fill in the form with the appropriate data if user id is provided
     if (this.props.userID) {
-      console.log(this.props.userID)
-      console.log(this.props.server)
       axios.get(`${this.props.server}/api/users/${this.props.userID}`)
         .then((response) => {
           this.setState({
@@ -49,13 +52,32 @@ class FormUser extends Component {
             responsable: response.data.responsable,
             telefono: response.data.telefono,
             estado: response.data.estado,
-            valor: response.data.valor
+            valor: response.data.valor,
+            certificado: response.certificado.valor
           });
         })
         .catch((err) => {
           console.log(err);
         });
     }
+  }
+
+  handleImageUpload(file) {
+    let upload = request.post(CLOUDINARY_UPLOAD_URL)
+                     .field('upload_preset', CLOUDINARY_UPLOAD_PRESET)
+                     .field('file', file);
+
+    upload.end((err, response) => {
+      if (err) {
+        console.error(err);
+      }
+
+      if (response.body.secure_url !== '') {
+        this.setState({
+          uploadedFileCloudinaryUrl: response.body.secure_url
+        });
+      }
+    });
   }
 
   handleInputChange(e) {
@@ -82,7 +104,8 @@ class FormUser extends Component {
       responsable: this.state.responsable,
       telefono: this.state.telefono,
       estado: this.state.estado,
-      valor: this.state.valor
+      valor: this.state.valor,
+      certificado: this.state.certificado
     }
 
     // Acknowledge that if the user id is provided, we're updating via PUT
@@ -111,8 +134,11 @@ class FormUser extends Component {
             responsable: '',
             telefono: '',
             estado: '',
-            valor:''
+            valor:'',
+            certificado: ''
           });
+           // .then(result=>console.log(result));
+          this.handleImageUpload();
           this.props.onUserAdded(response.data.result);
         }
         else {
@@ -146,9 +172,7 @@ class FormUser extends Component {
 
     return (
       <Form className={formClassName} onSubmit={this.handleSubmit}>
-                <Header as='h3' block color='orange'>
-    Datos del Fallecido
-  </Header>
+        <Header as='h3' block color='orange'>Datos del Fallecido</Header>
         <Form.Group widths='equal'>
         <Form.Input
             width={5} 

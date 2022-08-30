@@ -5,7 +5,8 @@ import Styles from "./style.module.css";
 //import { data } from "./Datos";
 import ModalUser from '../ModalUser/ModalUser';
 import ModalTotal from "../ModalTotal/ModalTotal";
-import Upload from "../FormUser/Upload";
+//import Upload from "../FormUser/Upload";
+
 export default class Tablita extends Component {
 	state = {
 		search: "",
@@ -33,9 +34,8 @@ export default class Tablita extends Component {
 				server={this.props.server}
 			/>
 			</Grid.Column> 
-			<Grid.Column >
-				<Upload server={this.props.server}
-				></Upload>
+			<Grid.Column > 
+				
 			<ModalTotal
 				headerTitle='Totales Registrados'
 				buttonTriggerTitle=' Totales Registrados'
@@ -57,6 +57,7 @@ export default class Tablita extends Component {
 				style={{ width: "250px" }}
 			></Input>
             </Grid.Column>
+
             </Grid>
 			<CustomTable
 				data={this.props.data}

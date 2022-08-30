@@ -51,7 +51,8 @@ router.post('/', postLimiter, (req, res) => {
     responsable:    req.body.responsable,
     telefono:       req.body.telefono,
     estado:         req.body.estado,
-    valor:          req.body.valor
+    valor:          req.body.valor,
+    certificado:    req.body.certificado
   });
 
   newUser.save()
@@ -69,7 +70,8 @@ router.post('/', postLimiter, (req, res) => {
           responsable:   result.responsable,
           telefono:   result.telefono,     
           estado:   result.estado,
-          valor: result.valor
+          valor: result.valor,
+          certificado: result.certificado
         }
       });
     })
@@ -112,6 +114,11 @@ router.post('/', postLimiter, (req, res) => {
           res.status(400).json({ success: false, msg: err.errors.valor.message });
           return;
         }
+        if (err.errors.certificado) {
+          res.status(400).json({ success: false, msg: err.errors.certificado.message });
+          return;
+        }
+
         // Show failed if all else fails for some reasons
         res.status(500).json({ success: false, msg: `Algo esta mal ${err}` });
       }
@@ -131,7 +138,8 @@ router.put('/:id', (req, res) => {
     responsable:    req.body.responsable,
     telefono:       req.body.telefono,
     estado:         req.body.estado,
-    valor:          req.body.valor
+    valor:          req.body.valor,
+    certificado:          req.body.certificado
   };
 
   User.findOneAndUpdate({ _id: req.params.id }, updatedUser, { runValidators: true, context: 'query' })
@@ -152,7 +160,8 @@ router.put('/:id', (req, res) => {
               responsable:    newResult.responsable,
               telefono:       newResult.telefono,        
               estado:         newResult.estado,
-              valor:          newResult.valor
+              valor:          newResult.valor,
+              certificado:          newResult.certificado
             }
           });
         })
@@ -199,6 +208,10 @@ router.put('/:id', (req, res) => {
           res.status(400).json({ success: false, msg: err.errors.valor.message });
           return;
         }
+        if (err.errors.certificado) {
+          res.status(400).json({ success: false, msg: err.errors.certificado.message });
+          return;
+        }
 
         // Show failed if all else fails for some reasons
         res.status(500).json({ success: false, msg: `Algo salios mal. ${err}` });
@@ -224,7 +237,8 @@ router.delete('/:id', (req, res) => {
           responsable:  result.responsable,
           telefono:     result.telefono,
           estado:       result.estado,
-          valor:        result.nombre
+          valor:        result.valor,
+          certificado:  result.certificado
         }
       });
     })
