@@ -2,10 +2,9 @@ import React, { Component } from "react";
 import CustomTable from "./CustomTable"
 import { Input, Grid } from "semantic-ui-react";
 import Styles from "./style.module.css";
-//import { data } from "./Datos";
 import ModalUser from '../ModalUser/ModalUser';
 import ModalTotal from "../ModalTotal/ModalTotal";
-//import Upload from "../FormUser/Upload";
+
 
 export default class Tablita extends Component {
 	state = {

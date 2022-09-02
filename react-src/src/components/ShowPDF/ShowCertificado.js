@@ -56,7 +56,7 @@ class ShowCertificado extends Component {
     return(
         <Modal trigger={
       
-            <Button disabled={ this.props.valores.uploadedFileCloudinaryUrl === '' ? true : false } 
+            <Button disabled={ this.props.valores.certificado === '' ? true : false } 
                     color='pink' icon size='mini'>
               <Icon name='download' />
                 Certificado
@@ -73,7 +73,7 @@ class ShowCertificado extends Component {
           {/*render a single page*/}
           <Page size="A4" style={styles.page}>
           <Image style={styles.image} bordered='true' 
-            src={this.props.valores.uploadedFileCloudinaryUrl} />
+            src={this.props.valores.certificado} />
             
           </Page>
         </Document>
