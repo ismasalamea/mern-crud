@@ -250,7 +250,7 @@ class FormUser extends Component {
           </Dropzone>
         </div>
         <div>
-          {this.state.certificado === '' ? null :
+          {this.state.uploadedFile === '' ? null :
           <div className='Imagen'>
             <p>Archivo Cargado exitosamente: {this.state.uploadedFile.name}</p>
             <img alt='alto' src={this.state.certificado} height='250px'/>
