@@ -34,8 +34,7 @@ class FormUser extends Component {
       formClassName: '',
       formSuccessMessage: '',
       formErrorMessage: '',
-      uploadedFile: null,
-      uploadedFileCloudinaryUrl: ''
+      uploadedFile: null
     }
 
     this.handleInputChange = this.handleInputChange.bind(this);
@@ -122,7 +121,7 @@ class FormUser extends Component {
       telefono: this.state.telefono,
       estado: this.state.estado,
       valor: this.state.valor,
-      certificado: this.state.uploadedFileCloudinaryUrl
+      certificado: this.state.certificado
     }
 
     // Acknowledge that if the user id is provided, we're updating via PUT
@@ -250,9 +249,9 @@ class FormUser extends Component {
           </Dropzone>
         </div>
         <div>
-          {this.state.uploadedFileCloudinaryUrl === '' ? null :
+          {this.state.certificado === '' ? null :
           <div className='Imagen'>
-            <p>Archivo Cargado exitosamente: {this.state.uploadedFile.name}</p>
+            <p>Archivo Cargado: {this.state.certificado}</p>
             <img alt='alto' src={this.state.certificado} height='250px'/>
           </div>}
         </div>        
