@@ -87,11 +87,11 @@ class FormUser extends Component {
       }
 
       if (response.body.secure_url !== '') {
-        console.log(response.body.secure_url)
+    //    console.log(response.body.secure_url)
         this.setState({
           certificado: response.body.secure_url
         });
-        console.log(this.state.certificado)
+    //    console.log(this.state.certificado)
       }
     });
   }
@@ -250,7 +250,7 @@ class FormUser extends Component {
           </Dropzone>
         </div>
         <div>
-          {this.state.uploadedFile === '' ? null :
+          {this.state.uploadedFileCloudinaryUrl === '' ? null :
           <div className='Imagen'>
             <p>Archivo Cargado exitosamente: {this.state.uploadedFile.name}</p>
             <img alt='alto' src={this.state.certificado} height='250px'/>
