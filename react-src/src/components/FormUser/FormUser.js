@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
 import { Message, Button, Form, Select, Header, Icon} from 'semantic-ui-react';
 import ShowPDF from '../ShowPDF/ShowPDF';
-import request from 'superagent';
+import ShowCertificado from '../ShowPDF/ShowCertificado';
 import axios from 'axios';
+import Dropzone from 'react-dropzone';
+import request from 'superagent';
+import './App.css';
 
-const CLOUDINARY_UPLOAD_PRESET = 'bmzjbxoq';
-const CLOUDINARY_UPLOAD_URL = 'https://api.cloudinary.com/v1_1/react-cloudinary/upload';
+const CLOUDINARY_UPLOAD_PRESET = 'certi_sayausi';
+const CLOUDINARY_UPLOAD_URL = 'https://api.cloudinary.com/v1_1/curso-node-jism/upload';
 
 const estadoOptions = [
   { key: true, text: 'Pagado', value: true },
@@ -30,7 +33,9 @@ class FormUser extends Component {
       certificado: '',
       formClassName: '',
       formSuccessMessage: '',
-      formErrorMessage: ''
+      formErrorMessage: '',
+      uploadedFile: null,
+      uploadedFileCloudinaryUrl: ''
     }
 
     this.handleInputChange = this.handleInputChange.bind(this);
@@ -38,7 +43,7 @@ class FormUser extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  componentWillMount() {
+  UNSAFE_componentWillMount() {
     // Fill in the form with the appropriate data if user id is provided
     if (this.props.userID) {
       axios.get(`${this.props.server}/api/users/${this.props.userID}`)
@@ -62,7 +67,16 @@ class FormUser extends Component {
     }
   }
 
+  onImageDrop(files) {
+    this.setState({
+      uploadedFile: files[0]
+    });
+
+    this.handleImageUpload(files[0]);
+  }
+
   handleImageUpload(file) {
+    console.log(file)
     let upload = request.post(CLOUDINARY_UPLOAD_URL)
                      .field('upload_preset', CLOUDINARY_UPLOAD_PRESET)
                      .field('file', file);
@@ -73,9 +87,11 @@ class FormUser extends Component {
       }
 
       if (response.body.secure_url !== '') {
+        console.log(response.body.secure_url)
         this.setState({
           uploadedFileCloudinaryUrl: response.body.secure_url
         });
+        console.log(this.state.uploadedFileCloudinaryUrl)
       }
     });
   }
@@ -84,6 +100,7 @@ class FormUser extends Component {
     const target = e.target;
     const value = target.type === 'checkbox' ? target.checked : target.value;
     const name = target.name;
+//    console.log(name + value)
     this.setState({ [name]: value });
   }
 
@@ -94,7 +111,7 @@ class FormUser extends Component {
   handleSubmit(e) {
     // Prevent browser refresh
     e.preventDefault();
-
+   // this.handleImageUpload(this.state.certificado);
     const user = {
       boveda: this.state.boveda,
       nombre: this.state.nombre,
@@ -105,7 +122,7 @@ class FormUser extends Component {
       telefono: this.state.telefono,
       estado: this.state.estado,
       valor: this.state.valor,
-      certificado: this.state.certificado
+      certificado: this.state.uploadedFileCloudinaryUrl
     }
 
     // Acknowledge that if the user id is provided, we're updating via PUT
@@ -138,7 +155,6 @@ class FormUser extends Component {
             certificado: ''
           });
            // .then(result=>console.log(result));
-          this.handleImageUpload();
           this.props.onUserAdded(response.data.result);
         }
         else {
@@ -171,6 +187,7 @@ class FormUser extends Component {
     const formErrorMessage = this.state.formErrorMessage;
 
     return (
+
       <Form className={formClassName} onSubmit={this.handleSubmit}>
         <Header as='h3' block color='orange'>Datos del Fallecido</Header>
         <Form.Group widths='equal'>
@@ -217,13 +234,28 @@ class FormUser extends Component {
             onChange={this.handleInputChange}
           />
         </Form.Group>
-        <Form.Input
-            label='Certificado de defuncion'
-            type='file'
-            name='certificado'
-            value={this.state.certificado}
-            onChange={this.handleInputChange}
-          />        
+        <div className="FileUpload" >
+          <Dropzone  
+            onDrop={this.onImageDrop.bind(this)}
+            multiple={false}
+            maxSize={500000}>
+              {({getRootProps, getInputProps}) => (
+            <div 
+            
+            {...getRootProps({className: 'dropzone'})}>
+              <input {...getInputProps()} />
+            <p>Hacer click para seleccionar el archivo:</p>
+          </div>
+          )}
+          </Dropzone>
+        </div>
+        <div>
+          {this.state.uploadedFileCloudinaryUrl === '' ? null :
+          <div className='Imagen'>
+            <p>Archivo Cargado exitosamente: {this.state.uploadedFile.name}</p>
+            <img alt='alto' src={this.state.uploadedFileCloudinaryUrl} height='250px'/>
+          </div>}
+        </div>        
         <Header as='h3' block color='purple'>
     Datos del Responsable
   </Header>
@@ -296,7 +328,10 @@ class FormUser extends Component {
           header='Advertenciasss!'
           content={formErrorMessage}
         />
-        <Button.Group widths='two' floated='right'>
+        <Button.Group widths='four' floated='right'>
+        <ShowCertificado
+          valores={this.state}
+        /> 
         <ShowPDF 
           valores={this.state}
         /> 
@@ -306,9 +341,9 @@ class FormUser extends Component {
           </Button>      
         </Button.Group>
         <br /><br /> {/* Yikes! Deal with Semantic UI React! */}
-        
+      
       </Form>
-               
+
     );
   }
 }

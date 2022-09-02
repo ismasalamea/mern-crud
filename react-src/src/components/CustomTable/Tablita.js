@@ -46,7 +46,7 @@ export default class Tablita extends Component {
             </Grid.Column>
             <Grid.Column >	
 			<Input  
-    			iconPosition='right'
+    			iconPosition='left'
 			fluid label='Buscar: '
 				placeholder={"Escriba ..."}
 				onChange={this.handleInputs}

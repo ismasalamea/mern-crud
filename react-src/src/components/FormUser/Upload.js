@@ -1,55 +1,74 @@
+import React from 'react';
+import Dropzone from 'react-dropzone';
+import request from 'superagent';
+import './App.css';
+import { Component } from 'react';
 
-import React, {useState} from 'react';
-import { Button, Modal, Header, Icon} from 'semantic-ui-react';
-import axios from 'axios';
+const CLOUDINARY_UPLOAD_PRESET = 'certi_sayausi';
+const CLOUDINARY_UPLOAD_URL = 'https://api.cloudinary.com/v1_1/curso-node-jism/upload';
 
-function Upload(server) {
 
-  const [file, setFile] = useState()
+export default class uploadedFile extends Component {
+  constructor(props) {
+    super(props);
 
-  function handleChange(event) {
-    setFile(event.target.files[0])
-  }
-  
-  function handleSubmit(event) {
-    event.preventDefault()
-    const url = 'https://cementeriosayausi.herokuapp.com/api/upload';
-    console.log(url)
-    const formData = new FormData();
-    formData.append('file', file);
-    formData.append('fileName', file.name);
-    const config = {
-      headers: {
-        'content-type': 'multipart/form-data',
-      },
+    this.state = {
+      uploadedFile: null,
+      uploadedFileCloudinaryUrl: ''
     };
-    axios.post(url, formData, config).then((response) => {
-      console.log(response.data);
+  }
+
+  onImageDrop(files) {
+    this.setState({
+      uploadedFile: files[0]
     });
 
+    this.handleImageUpload(files[0]);
   }
 
-  return (
-    <Modal trigger={
-      <Button color='blue' icon='upload'>
-        <Icon color='black' name='upload' />
-        Cargar  </Button> }
-        
-        dimmer='inverted'
-          size='small'
-          closeIcon
-        >
-<Modal.Header>
-             <Header.Content> <Icon name='chart line' />Cargar Archivo</Header.Content>
-            </Modal.Header>
-            <Modal.Content> 
-    <form onSubmit={handleSubmit}>
-      <input type="file" onChange={handleChange}/>
-      <input type="submit" value="Upload File" />
-    </form>
-    </Modal.Content>
-    </Modal>
-  )
-};
+  handleImageUpload(file) {
+    let upload = request.post(CLOUDINARY_UPLOAD_URL)
+                     .field('upload_preset', CLOUDINARY_UPLOAD_PRESET)
+                     .field('file', file);
 
-export default Upload;
+    upload.end((err, response) => {
+      if (err) {
+        console.error(err);
+      }
+
+      if (response.body.secure_url !== '') {
+        this.setState({
+          uploadedFileCloudinaryUrl: response.body.secure_url
+        });
+      }
+    });
+  }
+
+  render() {
+    return (
+      <form>
+        <div className="FileUpload">
+          <Dropzone  onDrop={this.onImageDrop.bind(this)}
+            multiple={false}
+            accept="image/*">
+              {({getRootProps, getInputProps}) => (
+            <div {...getRootProps()}>
+              <input {...getInputProps()} />
+            <p>Drag 'n' drop some files here, or click to select files</p>
+          </div>
+  )}
+</Dropzone>
+
+        </div>
+
+        <div>
+          {this.state.uploadedFileCloudinaryUrl === '' ? null :
+          <div>
+            <p>{this.state.uploadedFile.name}</p>
+            <img src={this.state.uploadedFileCloudinaryUrl} />
+          </div>}
+        </div>
+      </form>
+    )
+  }
+}
