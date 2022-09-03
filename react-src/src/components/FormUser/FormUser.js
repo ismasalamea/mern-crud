@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
-import { Message, Button, Form, Select, Header, Icon} from 'semantic-ui-react';
+import { Message, Button, Form, Select, Header, Icon } from 'semantic-ui-react';
 import ShowPDF from '../ShowPDF/ShowPDF';
 import ShowCertificado from '../ShowPDF/ShowCertificado';
 import axios from 'axios';
 import Dropzone from 'react-dropzone';
 import request from 'superagent';
 import './App.css';
+import Viewer from 'react-viewer';
 
 const CLOUDINARY_UPLOAD_PRESET = 'certi_sayausi';
 const CLOUDINARY_UPLOAD_URL = 'https://api.cloudinary.com/v1_1/curso-node-jism/upload';
@@ -188,8 +189,32 @@ class FormUser extends Component {
     return (
 
       <Form className={formClassName} onSubmit={this.handleSubmit}>
+        <Header as='h3' block color='blue'>Certificado de Defunción</Header>
+        
+        <div className="FileUpload">
+          <Dropzone  
+            onDrop={this.onImageDrop.bind(this)}
+            multiple={false}
+            maxSize={500000}>
+              {({getRootProps, getInputProps}) => (
+            <div 
+            {...getRootProps({className: 'dropzone'})}>
+              <input {...getInputProps()} />
+            <p>Hacer click para seleccionar el archivo:</p>
+          </div>
+          )}
+          </Dropzone>
+        </div>
+        <div>
+          {this.state.certificado === '' ? null :
+          <div className='Imagen'>
+            <p>Archivo Cargado</p>
+            <img alt='alto' src={this.state.certificado} height='250px'/>
+          </div>}
+        </div>        
+        
         <Header as='h3' block color='orange'>Datos del Fallecido</Header>
-        <Form.Group widths='equal'>
+        <Form.Group widths='2' >
         <Form.Input
             width={5} 
             label='Boveda'
@@ -211,7 +236,7 @@ class FormUser extends Component {
           pattern="\d{4}-\d{2}-\d{2}"
           value={this.state.fecha.split("T")[0]}
           onChange={this.handleInputChange}
-        />
+        />        
           <Form.Input
             label='Nombres del fallecido'
             type='text'
@@ -232,29 +257,8 @@ class FormUser extends Component {
             value={this.state.apellido}
             onChange={this.handleInputChange}
           />
-        </Form.Group>
-        <div className="FileUpload" >
-          <Dropzone  
-            onDrop={this.onImageDrop.bind(this)}
-            multiple={false}
-            maxSize={500000}>
-              {({getRootProps, getInputProps}) => (
-            <div 
-            
-            {...getRootProps({className: 'dropzone'})}>
-              <input {...getInputProps()} />
-            <p>Hacer click para seleccionar el archivo:</p>
-          </div>
-          )}
-          </Dropzone>
-        </div>
-        <div>
-          {this.state.certificado === '' ? null :
-          <div className='Imagen'>
-            <p>Archivo Cargado: {this.state.certificado}</p>
-            <img alt='alto' src={this.state.certificado} height='250px'/>
-          </div>}
-        </div>        
+</Form.Group>
+        
         <Header as='h3' block color='purple'>
     Datos del Responsable
   </Header>
