@@ -28,7 +28,7 @@ export default class Tablita extends Component {
             	headerTitle='Añadir Boveda'
             	buttonTriggerTitle=' Añadir Boveda'
             	buttonSubmitTitle='Anadir'
-            	buttonColor='red'
+            	buttonColor='blue'
             	onUserAdded={this.props.onUserAdded}
 				server={this.props.server}
 			/>
@@ -45,7 +45,7 @@ export default class Tablita extends Component {
             </Grid.Column>
             <Grid.Column >	
 			<Input  
-    			iconPosition='left'
+
 			fluid label='Buscar: '
 				placeholder={"Escriba ..."}
 				onChange={this.handleInputs}

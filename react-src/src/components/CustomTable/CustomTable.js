@@ -169,7 +169,7 @@ class CustomTable extends PureComponent {
           					<ModalConfirmDelete
             					headerTitle='Eliminar'
             					buttonTriggerTitle=''
-            					buttonColor='white'
+            					buttonColor='red'
             					user={item}
             					onUserDeleted={this.props.onUserDeleted}
 								server={this.props.server}

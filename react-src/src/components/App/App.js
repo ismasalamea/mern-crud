@@ -8,7 +8,7 @@ import Tablita from '../CustomTable/Tablita';
 class App extends Component {
   constructor() {
     super();
-   // this.server = process.env.REACT_APP_API_URL || 'http://localhost:3000';
+    // this.server = process.env.REACT_APP_API_URL || 'http://localhost:3000';
     this.server = process.env.REACT_APP_API_URL || 'https://cementeriosayausi.herokuapp.com';
     this.state = {
       users: [],
@@ -31,10 +31,10 @@ class App extends Component {
     axios.get(`${this.server}/api/users/`)
       .then((response) => {
         this.setState({ users: response.data });
-        
+
       })
       .catch((err) => {
-        //console.log(err);
+        console.log(err);
       });
   }
 
@@ -46,7 +46,7 @@ class App extends Component {
 
   handleUserUpdated(user) {
     let users = this.state.users.slice();
-    
+
     let i = users.findIndex(u => u._id === user._id)
 
     if (users.length > i) { users[i] = user }
@@ -65,15 +65,15 @@ class App extends Component {
       <div>
         <div className='App'>
           <div className='App-header'>
-          
-           {/* <img src={logo} className='App-logo' alt='logo' /> */}
+
+            {/* <img src={logo} className='App-logo' alt='logo' /> */}
             <h1 className='App-intro'>Sistema de Gestion del Cementerio de Sayausi</h1>
           </div>
         </div>
         <Container>
 
-          <Tablita 
-            data={this.state.users}       
+          <Tablita
+            data={this.state.users}
             onUserAdded={this.handleUserAdded}
             onUserUpdated={this.handleUserUpdated}
             onUserDeleted={this.handleUserDeleted}
