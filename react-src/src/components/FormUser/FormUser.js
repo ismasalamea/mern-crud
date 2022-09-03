@@ -6,7 +6,6 @@ import axios from 'axios';
 import Dropzone from 'react-dropzone';
 import request from 'superagent';
 import './App.css';
-import Viewer from 'react-viewer';
 
 const CLOUDINARY_UPLOAD_PRESET = 'certi_sayausi';
 const CLOUDINARY_UPLOAD_URL = 'https://api.cloudinary.com/v1_1/curso-node-jism/upload';
