@@ -55,14 +55,14 @@ class ShowCertificado extends Component {
     {  
     return(
         <Modal trigger={
-      
-            <Button disabled={ this.props.valores.certificado === '' ? true : false } 
-                    color='pink' icon size='mini'>
+            <Button disabled={!this.props.valores.certificado ? true : false } 
+            color={this.props.buttonColor} 
+            circular
+            >
               <Icon name='download' />
-                Certificado
+              {this.props.buttonTriggerTitle}
             </Button> }
-            
-            dimmer='inverted'
+              dimmer='inverted'
               size='small'
               closeIcon
             >
@@ -73,7 +73,9 @@ class ShowCertificado extends Component {
           {/*render a single page*/}
           <Page size="A4" style={styles.page}>
           <Image style={styles.image} bordered='true' 
-            src={this.props.valores.certificado} />
+            src={this.props.valores.certificado ? 
+            this.props.valores.certificado :
+             'https://res.cloudinary.com/curso-node-jism/image/upload/v1662431973/sayausi/no_dis_m52par.png'} />
             
           </Page>
         </Document>

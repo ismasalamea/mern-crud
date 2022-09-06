@@ -205,14 +205,11 @@ class FormUser extends Component {
           </Dropzone>
         </div>
         <div>
-          
+          {this.state.certificado === '' ? null :
           <div className='Imagen'>
-            <p>{this.state.certificado ? 'Certificado de Defunción' : 'No existe Certificado de Defunción' } </p>
-            <img alt='' src={this.state.certificado? 
-              this.state.certificado : 
-              'https://res.cloudinary.com/curso-node-jism/image/upload/v1662431973/sayausi/no_dis_m52par.png'} 
-              height='250px'/>
-          </div>
+            <p>Archivo Cargado</p>
+            <img alt='alto' src={this.state.certificado} height='250px'/>
+          </div>}
         </div>        
         
         <Header as='h3' block color='orange'>Datos del Fallecido</Header>
@@ -334,6 +331,9 @@ class FormUser extends Component {
           content={formErrorMessage}
         />
         <Button.Group widths='four' floated='right'>
+        <ShowCertificado
+          valores={this.state}
+        /> 
         <ShowPDF 
           valores={this.state}
         /> 

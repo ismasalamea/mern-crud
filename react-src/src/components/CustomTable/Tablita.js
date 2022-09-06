@@ -6,6 +6,7 @@ import ModalUser from '../ModalUser/ModalUser';
 import ModalTotal from "../ModalTotal/ModalTotal";
 
 
+
 export default class Tablita extends Component {
 	state = {
 		search: "",
@@ -31,6 +32,7 @@ export default class Tablita extends Component {
             	buttonColor='blue'
             	onUserAdded={this.props.onUserAdded}
 				server={this.props.server}
+				iconName='user'
 			/>
 			</Grid.Column> 
 			<Grid.Column > 
@@ -62,7 +64,7 @@ export default class Tablita extends Component {
 				data={this.props.data}
 				headers={["Estado","Boveda", "Nombre", "Apellido", "Fecha", "Cedula", "Responsable", "Valor","Acciones"]}
 				labels={["boveda","nombre", "apellido", "fecha", "cedula", "responsable", "valor"]}
-				pageRows={20} //Optional
+				pageRows={10} //Optional
 				searchQuery={search} //Optional
 				footerPages={10} //Optional
 				onUserUpdated={this.props.onUserUpdated}

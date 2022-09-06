@@ -41,27 +41,13 @@ app.use(bodyParser.json());
 
 // Enable cross-origin access through the CORS middleware
 // NOTICE: For React development server only!
-if (process.env.CORS) {
+//if (process.env.CORS) {
   app.use(cors());
-}
+//}
 app.use(fileupload());
 // Initialize routes middleware
 app.use('/api/users', require('./routes/users'));
-
-//////////////////////////////////////////////////////////////////API cargar archivos PDF al servidor
-app.post("/api/upload", (req, res) => {
-  const newpath = __dirname + "/public/files/";
-  const file = req.files.file;
-  const filename = file.name;
-//  console.log(filename, newpath);
-  file.mv(`${newpath}${filename}`, (err) => {
-    if (err) {
-      res.status(500).send({ message: "File upload failed", code: 200 });
-    }
-    res.status(200).send({ message: "File Uploaded", code: 200 });
-  });
-});
-
+//app.use('/api/users', require('./routes/pagos'));
 
 // Use express's default error handling middleware
 app.use((err, req, res, next) => {

@@ -2,6 +2,7 @@ import React, { PureComponent } from "react";
 import { Icon, Menu, Table, Button } from "semantic-ui-react";
 import ModalUser from "../ModalUser/ModalUser";
 import ModalConfirmDelete from '../ModalConfirmDelete/ModalConfirmDelete';
+import ShowCertificado from "../ShowPDF/ShowCertificado";
 import Styles from "./style.module.css";
 
 class CustomTable extends PureComponent {
@@ -69,25 +70,25 @@ class CustomTable extends PureComponent {
 	searchOnData = (query, data) => {
 		return query
 			? data.filter((item) => {
-					let obj = {};
-					for (let key of Object.keys(item)) {
-						obj[key] = item[key];
-					}
-					for (let key of Object.keys(obj)) {
-						try {
-							let value = obj[key];
-							let re = new RegExp("W*(" + query + ")W*");
-							if (re.test(value.toString().toLowerCase())) {
-								return true;
-							} else if (re.test(value)) {
-								return true;
-							}
-						} catch (e) {
-							return false;
+				let obj = {};
+				for (let key of Object.keys(item)) {
+					obj[key] = item[key];
+				}
+				for (let key of Object.keys(obj)) {
+					try {
+						let value = obj[key];
+						let re = new RegExp("W*(" + query + ")W*");
+						if (re.test(value.toString().toLowerCase())) {
+							return true;
+						} else if (re.test(value)) {
+							return true;
 						}
+					} catch (e) {
+						return false;
 					}
-					return false;
-			  })
+				}
+				return false;
+			})
 			: data;
 	};
 
@@ -125,7 +126,7 @@ class CustomTable extends PureComponent {
 	getData = () => {
 		const { data, searchQuery } = this.props;
 		const { pageSelection, header } = this.state;
-	
+
 		let _data = data || [];
 
 		if (searchQuery) _data = this.searchOnData(searchQuery, _data);
@@ -140,40 +141,47 @@ class CustomTable extends PureComponent {
 	renderData = () => {
 		const { labels } = this.props;
 		const data = this.getData();
-		
+
 		return (
 			<Table.Body>
 				{(data || []).map((item, index) => (
 					<Table.Row key={item._id}>
-				          <Table.Cell textAlign='center'>
-	    			        <Icon color={item.estado ? 'green' : 'red'  } name={item.estado ? 'checkmark box' : 'cancel'  }  size='large' />
-    	      			</Table.Cell>
-	
+						<Table.Cell textAlign='center'>
+							<Icon color={item.estado ? 'green' : 'red'} name={item.estado ? 'checkmark box' : 'cancel'} size='large' />
+						</Table.Cell>
+
 						{(labels || []).map((label, index) => (
-							<Table.Cell key={item._id}>
+							<Table.Cell key={label._id}>
 								<div className={Styles.cell}>
-								{ label==="fecha" ? item[label].split("T")[0]: item[label] || 0}
+									{label === "fecha" ? item[label].split("T")[0] : item[label] || 0}
 								</div>
 							</Table.Cell>
 						))}
-						 <Button.Group>
+						<Button.Group widths='3'>
+							<ShowCertificado
+								valores={item}
+								buttonTriggerTitle=''
+								buttonColor='black'
+							/>
 							<ModalUser
-            					headerTitle='Editar'
-            					buttonTriggerTitle=''
-            					buttonSubmitTitle='Guardar'
-            					buttonColor='blue'
-            					userID={item._id}
-            					onUserUpdated={this.props.onUserUpdated}
+								headerTitle='Editar'
+								buttonTriggerTitle=''
+								buttonSubmitTitle='Guardar'
+								buttonColor='blue'
+								userID={item._id}
+								onUserUpdated={this.props.onUserUpdated}
 								server={this.props.server}
-          					/>
-          					<ModalConfirmDelete
-            					headerTitle='Eliminar'
-            					buttonTriggerTitle=''
-            					buttonColor='red'
-            					user={item}
-            					onUserDeleted={this.props.onUserDeleted}
+								iconName='write'
+							/>
+							<ModalConfirmDelete
+								headerTitle='Eliminar'
+								buttonTriggerTitle=''
+								buttonColor='red'
+								user={item}
+								onUserDeleted={this.props.onUserDeleted}
 								server={this.props.server}
-          					/>
+								iconName='delete'
+							/>
 						</Button.Group>
 					</Table.Row>
 				))}
@@ -210,7 +218,7 @@ class CustomTable extends PureComponent {
 		return (
 			<Table.Footer>
 				<Table.Row>
-					<Table.HeaderCell colSpan={labels.length+2}>
+					<Table.HeaderCell colSpan={labels.length + 2}>
 						<Menu floated="right" pagination>
 							<Menu.Item as="a" icon onClick={() => this.handleFooter(page - 1)}>
 								<Icon name="chevron left" />
