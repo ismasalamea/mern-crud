@@ -11,10 +11,10 @@ const nombreValidador = [
 ];
 
 // Define the database model
-const UserSchema = new mongoose.Schema({
-  cedula: {
+const PagoSchema = new mongoose.Schema({
+  cedula:{
     type: String,
-    required: [true, 'Cedula es requerido.']
+    required: [true, 'Cedula es obligatorio.'],
   },
   fecha: {
     type: Date,
@@ -30,11 +30,10 @@ const UserSchema = new mongoose.Schema({
     default:true,
     required:[true, 'Estado es requerido.'],
   },
+
 });
 
-
-
 // Use the unique validator plugin
-UserSchema.plugin(unique, { message: 'That {PATH} is already taken.' });
+PagoSchema.plugin(unique, { message: 'That {PATH} is already taken.' });
 
-const User = module.exports = mongoose.model('user', UserSchema);
+const Pago = module.exports = mongoose.model('pagos', PagoSchema);

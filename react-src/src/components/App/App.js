@@ -8,11 +8,10 @@ import Tablita from '../CustomTable/Tablita';
 class App extends Component {
   constructor() {
     super();
-  //  this.server = process.env.REACT_APP_API_URL || 'http://localhost:3000';
-    this.server = process.env.REACT_APP_API_URL || 'https://cementeriosayausi.herokuapp.com';
+  //  this.server = process.env.REACT_APP_API_URL || 'https://cementeriosayausi.herokuapp.com';
+    this.server = 'https://cementeriosayausi.herokuapp.com';
     this.state = {
       users: [],
-      online: 0
     }
 
     this.fetchUsers = this.fetchUsers.bind(this);
@@ -63,15 +62,10 @@ class App extends Component {
   render() {
     return (
       <div>
-        <div className='App'>
-          <div className='App-header'>
-
-            {/* <img src={logo} className='App-logo' alt='logo' /> */}
-            <h1 className='App-intro'>Sistema de Gestion del Cementerio de Sayausi</h1>
-          </div>
+        <div className='App'>          
+            <p className='App-intro'>Cementerio - GAD de la Parroquia Sayausi</p>
         </div>
         <Container>
-
           <Tablita
             data={this.state.users}
             onUserAdded={this.handleUserAdded}
@@ -82,6 +76,8 @@ class App extends Component {
         </Container>
         <br />
       </div>
+      
+      
     );
   }
 }

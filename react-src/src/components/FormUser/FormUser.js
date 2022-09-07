@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Message, Button, Form, Select, Header, Icon } from 'semantic-ui-react';
 import ShowPDF from '../ShowPDF/ShowPDF';
-import ShowCertificado from '../ShowPDF/ShowCertificado';
 import axios from 'axios';
 import Dropzone from 'react-dropzone';
 import request from 'superagent';

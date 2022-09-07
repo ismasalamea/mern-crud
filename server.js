@@ -47,7 +47,7 @@ app.use(bodyParser.json());
 app.use(fileupload());
 // Initialize routes middleware
 app.use('/api/users', require('./routes/users'));
-//app.use('/api/users', require('./routes/pagos'));
+app.use('/api/pagos', require('./routes/pagos'));
 
 // Use express's default error handling middleware
 app.use((err, req, res, next) => {
