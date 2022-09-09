@@ -220,8 +220,8 @@ class FormUser extends Component {
             width={5} 
             label='Boveda'
             type='text'
-            maxLength='4'
-            placeholder='A-001'
+            maxLength='5'
+            placeholder='A0001'
             name='boveda'
             required
             value={this.state.boveda}
