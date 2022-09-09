@@ -189,30 +189,7 @@ class FormUser extends Component {
       <Form className={formClassName} onSubmit={this.handleSubmit}>
         <Header as='h3' block color='blue'>Certificado de Defunción</Header>
         
-        <div className="FileUpload">
-          <Dropzone  
-            onDrop={this.onImageDrop.bind(this)}
-            multiple={false}
-            maxSize={500000}>
-              {({getRootProps, getInputProps}) => (
-            <div 
-            {...getRootProps({className: 'dropzone'})}>
-              <input {...getInputProps()} />
-            <p>Hacer click para seleccionar el archivo:</p>
-          </div>
-          )}
-          </Dropzone>
-        </div>
-        <div>
-          
-          <div className='Imagen'>
-            <p>{this.state.certificado ? 'Certificado de Defunción' : 'No existe Certificado de Defunción' } </p>
-            <img alt='' src={this.state.certificado? 
-              this.state.certificado : 
-              'https://res.cloudinary.com/curso-node-jism/image/upload/v1662431973/sayausi/no_dis_m52par.png'} 
-              height='250px'/>
-          </div>
-        </div>        
+       
         
         <Header as='h3' block color='orange'>Datos del Fallecido</Header>
         <Form.Group widths='2' >
@@ -319,7 +296,30 @@ class FormUser extends Component {
           onChange={this.handleSelectChange}
         />
         </Form.Group>
-
+        <div className="FileUpload">
+          <Dropzone  
+            onDrop={this.onImageDrop.bind(this)}
+            multiple={false}
+            maxSize={500000}>
+              {({getRootProps, getInputProps}) => (
+            <div 
+            {...getRootProps({className: 'dropzone'})}>
+              <input {...getInputProps()} />
+            <p>Hacer click para seleccionar el archivo:</p>
+          </div>
+          )}
+          </Dropzone>
+        </div>
+        <div>
+          
+          <div className='Imagen'>
+            <p>{this.state.certificado ? 'Certificado de Defunción' : 'No existe Certificado de Defunción' } </p>
+            <img alt='' src={this.state.certificado? 
+              this.state.certificado : 
+              'https://res.cloudinary.com/curso-node-jism/image/upload/v1662431973/sayausi/no_dis_m52par.png'} 
+              height='250px'/>
+          </div>
+        </div>        
         <Message
           success
           color='blue'
