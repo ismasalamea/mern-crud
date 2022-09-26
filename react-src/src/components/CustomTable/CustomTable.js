@@ -146,9 +146,7 @@ class CustomTable extends PureComponent {
 			<Table.Body>
 				{(data || []).map((item, index) => (
 					<Table.Row key={item._id}>
-						<Table.Cell textAlign='center'>
-							<Icon color={item.estado ? 'green' : 'red'} name={item.estado ? 'checkmark box' : 'cancel'} size='large' />
-						</Table.Cell>
+						
 
 						{(labels || []).map((label, index) => (
 							<Table.Cell key={label._id}>
@@ -157,7 +155,12 @@ class CustomTable extends PureComponent {
 								</div>
 							</Table.Cell>
 						))}
-						<Button.Group widths='3'>
+
+						<Table.Cell textAlign='center'>
+							<Icon color={item.estado ? 'green' : 'red'} name={item.estado ? 'checkmark box' : 'cancel'} size='large' />
+						</Table.Cell>
+
+						<Button.Group widths='4' size='mini'>
 							<ShowCertificado
 								valores={item}
 								buttonTriggerTitle=''
@@ -172,6 +175,7 @@ class CustomTable extends PureComponent {
 								onUserUpdated={this.props.onUserUpdated}
 								server={this.props.server}
 								iconName='write'
+								buttonSize='mini'
 							/>
 							<ModalConfirmDelete
 								headerTitle='Eliminar'

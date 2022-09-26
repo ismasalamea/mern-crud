@@ -62,11 +62,11 @@ export default class Tablita extends Component {
             </Grid>
 			<CustomTable
 				data={this.props.data}
-				headers={["Estado","Boveda", "Nombre", "Apellido", "Fecha", "Cedula", "Responsable", "Valor","Acciones"]}
-				labels={["boveda","nombre", "apellido", "fecha", "cedula", "responsable", "valor"]}
-				pageRows={10} //Optional
+				headers={["Boveda", "Nombre", "Apellido", "Fecha", "Valor","Estado","Acciones"]}
+				labels={["boveda","nombre", "apellido", "fecha", "valor"]}
+				pageRows={20} //Optional
 				searchQuery={search} //Optional
-				footerPages={10} //Optional
+				footerPages={5} //Optional
 				onUserUpdated={this.props.onUserUpdated}
 				onUserDeleted={this.props.onUserDeleted}
 				server={this.props.server}
