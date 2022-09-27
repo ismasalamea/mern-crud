@@ -20,6 +20,7 @@ const postLimiter = new RateLimit({
 // READ (ONE)
 router.get('/:id', (req, res) => {
   Pago.findById(req.params.id)
+  Pago.f
     .then((result) => {
       res.json(result);
     })
@@ -31,6 +32,17 @@ router.get('/:id', (req, res) => {
 // READ (ALL)
 router.get('/', (req, res) => {
   Pago.find({})
+    .then((result) => {
+      res.json(result);
+    })
+    .catch((err) => {
+      res.status(500).json({ success: false, msg: `Algo salio mal. ${err}` });
+    });
+});
+
+// READ (BOVEDA)
+router.get('/boveda/:bov', (req, res) => {
+  Pago.find({ bovedapag: req.params.bov })
     .then((result) => {
       res.json(result);
     })

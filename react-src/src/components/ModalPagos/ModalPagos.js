@@ -15,7 +15,7 @@ class ModalPagos extends Component {
   }
 
   fetchPagos() {
-    axios.get('https://cementeriosayausi.herokuapp.com/api/pagos/')
+    axios.get(`https://cementeriosayausi.herokuapp.com/api/pagos/boveda/${this.props.boveda}`)
       .then((response) => {
         this.setState({pagos: response.data });
         console.log(this.state.pagos)

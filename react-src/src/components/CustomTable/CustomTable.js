@@ -172,7 +172,7 @@ class CustomTable extends PureComponent {
 								buttonTriggerTitle=''
 								buttonSubmitTitle=''
 								buttonColor='green'
-								userID={item._id}
+								valores={item}
 								onUserUpdated={this.props.onUserUpdated}
 								server={this.props.server}
 								iconName='dollar'
