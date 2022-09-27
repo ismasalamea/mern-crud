@@ -176,9 +176,10 @@ class CustomTable extends PureComponent {
 								onUserUpdated={this.props.onUserUpdated}
 								server={this.props.server}
 								iconName='dollar'
-								buttonSize='mini' 
-								
-							/> */
+								buttonSize='mini'
+								labels={["bovedapag","fechapag", "fechasig", "valorpag"]}
+								headers={["Boveda", "Fecha", "Proximo Pago", "Valor"]}
+							/> 
 							<ModalUser
 								headerTitle='Editar'
 								buttonTriggerTitle=''

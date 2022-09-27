@@ -1,13 +1,7 @@
 import React, { Component } from 'react';
-import { Message, Button, Form, Select, Header, Icon } from 'semantic-ui-react';
+import { Message, Button, Form,  Header, Icon } from 'semantic-ui-react';
 import axios from 'axios';
 import './App.css';
-
-
-const estadoOptions = [
-  { key: true, text: 'Pagado', value: true },
-  { key: false, text: 'No pagado', value: false },
-]
 
 class FormPagos extends Component {
 
@@ -139,7 +133,7 @@ class FormPagos extends Component {
         <Form.Input
           width={8} 
           label='Fecha de Pago'
-          name='fecha'
+          name='fechapag'
           type='date'
           maxLength='10'
           required
@@ -147,36 +141,28 @@ class FormPagos extends Component {
           onChange={this.handleInputChange}
         />        
         <Form.Input
-          width='5'
-          label='Cedula'
-          type='text'
-          placeholder='0104751987'
-          name='cedula'
+          width={8} 
+          label='Fecha PROXIMA de Pago'
+          name='fechasig'
+          type='date'
           maxLength='10'
           required
-          value={this.state.cedula}
+          pattern="\d{4}-\d{2}-\d{2}"
           onChange={this.handleInputChange}
-        />         
+        />        
+
         <Form.Input
         width={3} 
         label='Valor'
         type='number'
         placeholder='0,00'
-        name='valor'
+        name='valorpag'
         maxLength='8'
         required
-        value={this.state.valor}
+        value={this.state.valorpag}
         onChange={this.handleInputChange}
      />
-             <Form.Field
-          control={Select}
-          label='Estado'
-          options={estadoOptions}
-          placeholder=''
-          value={this.state.estado}
-          onChange={this.handleSelectChange}
-        />
-                <Button name='user' color={this.props.buttonColor} floated='right'>
+       <Button name='user' color={this.props.buttonColor} floated='right'>
           <Icon name='save' />
             {this.props.buttonSubmitTitle}
           </Button>      

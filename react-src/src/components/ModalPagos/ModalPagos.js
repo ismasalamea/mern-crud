@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import { Button, Modal, Icon, Header, Table } from 'semantic-ui-react';
 import FormPagos from '../FormPagos/FormPagos';
 import axios from 'axios';
+import Styles from "./style.module.css";
 
 class ModalPagos extends Component {
-
   constructor(props) {
     super(props);
 
@@ -12,12 +12,13 @@ class ModalPagos extends Component {
       pagos: [],
     }
     this.fetchPagos = this.fetchPagos.bind(this);
+    
   }
 
   fetchPagos() {
-    axios.get(`https://cementeriosayausi.herokuapp.com/api/pagos/boveda/${this.props.boveda}`)
+    axios.get(`https://cementeriosayausi.herokuapp.com/api/pagos/boveda/${this.props.valores.boveda}`)
       .then((response) => {
-        this.setState({pagos: response.data });
+        this.setState({ pagos: response.data });
         console.log(this.state.pagos)
       })
       .catch((err) => {
@@ -26,54 +27,60 @@ class ModalPagos extends Component {
    
   }
 
-  UNSAFE_componentWillMount() {
-    // Fill in the form with the appropriate data if user id is provided
+  UNSAFE_componentWillMount() {    
     this.fetchPagos();
   }
 
 
-
-
-
   render() {
+    const sumall = this.state.pagos.map(item => item.valorpag).reduce((prev, curr) => prev + curr, 0);
     return (
       <Modal  trigger={ 
-      <Button disabled color={this.props.buttonColor} size={this.props.buttonSize}>
+      <Button color={this.props.buttonColor} size={this.props.buttonSize}>
       <Icon name={this.props.iconName} />
           {this.props.buttonTriggerTitle}
       </Button>}
         dimmer='inverted'
-        closeIcon
-      >
+        closeIcon>
         <Header icon='user' content={this.props.headerTitle} />
-
         <Modal.Content>
         <Header as='h3' block color='orange'>Detalle de pagos</Header>
-
-        <Table.Body>
+        <Table celled>
+        <Table.Header>
+				<Table.Row>
+					{(this.props.headers || []).map((item, index) => (
+						<Table.HeaderCell key={index} >
+							<div className={Styles.header}>
+								<div>{item}</div>
+							</div>
+						</Table.HeaderCell>
+					))}
+				</Table.Row>
+			</Table.Header>      
+      <Table.Body>
 				{(this.state.pagos || []).map((item, index) => (
-					<Table.Row key={item._id}>			
-							<Table.Cell key={item._id}>
-              <Table.Cell textAlign='center'>
-								{item.cedula}
-                {item.fecha}
-                {item.valor}
-                </Table.Cell>
-							</Table.Cell>
-
+					<Table.Row >			
+          {(this.props.labels || []).map((label, index) => (
+							<Table.Cell >
+                <div className={Styles.cell}>
+                {label === "fechapag" || label === "fechasig"? item[label].split("T")[0] : item[label] || 0}								    
+                </div>
+              </Table.Cell>
+        ))}
 					</Table.Row>
 				))}
-			</Table.Body>
-
-
-
-
-
-
-
-
-
-
+        </Table.Body>
+        
+        
+        <Table.Footer>
+          <Table.Row >
+            <Table.Cell />
+            <Table.Cell />
+            <Table.Cell textAlign='right' > Total : </Table.Cell>
+            <Table.Cell ><div className={Styles.footer}>{sumall}	</div></Table.Cell>
+          </Table.Row >
+        </Table.Footer>
+      </Table>
 
 
           <FormPagos
