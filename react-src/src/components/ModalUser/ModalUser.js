@@ -17,6 +17,7 @@ class ModalUser extends Component {
       >
         <Header icon='user' content={this.props.headerTitle} />
         <Modal.Content>
+          
           <FormUser
             buttonSubmitTitle={this.props.buttonSubmitTitle}
             buttonColor={this.props.buttonColor}

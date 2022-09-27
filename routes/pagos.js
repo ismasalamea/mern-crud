@@ -43,10 +43,10 @@ router.get('/', (req, res) => {
 router.post('/', postLimiter, (req, res) => {
 
   let newPago = new Pago({
-    cedula:         req.body.cedula,
+    boveda:         req.body.cedula,
     fecha:          req.body.fecha,
-    valor:          req.body.valor,
-    estado:         req.body.estado
+    fechasig:       req.body.fechasig,
+    valor:          req.body.valor
   });
 
   newPago.save()
@@ -55,31 +55,31 @@ router.post('/', postLimiter, (req, res) => {
         success: true,
         msg: `Pago Agregado!`,
         result: {
-          _id:      result._id,
-          cedula:   result.cedula,
-          fecha:    result.fecha,
-          valor:    result.valor,
-          estado:   result.estado
+          _id:         result._id,
+          boveda:      result.boveda,
+          fecha:       result.fecha,
+          fechasig:    result.fechasig,
+          valor:       result.valor
         }
       });
     })
     .catch((err) => {
       console.log(err);
       if (err.errors) {
-        if (err.errors.cedula) {
-          res.status(400).json({ success: false, msg: err.errors.cedula.message });
+        if (err.errors.boveda) {
+          res.status(400).json({ success: false, msg: err.errors.boveda.message });
           return;
         }
         if (err.errors.fecha) {
           res.status(400).json({ success: false, msg: err.errors.fecha.message });
           return;
         }
-        if (err.errors.valor) {
-          res.status(400).json({ success: false, msg: err.errors.valor.message });
+        if (err.errors.fechasig) {
+          res.status(400).json({ success: false, msg: err.errors.fechasig.message });
           return;
         }
-        if (err.errors.estado) {
-          res.status(400).json({ success: false, msg: err.errors.estado.message });
+        if (err.errors.valor) {
+          res.status(400).json({ success: false, msg: err.errors.valor.message });
           return;
         }
         // Show failed if all else fails for some reasons
@@ -93,10 +93,10 @@ router.put('/:id', (req, res) => {
 
 
   let updatedPago = {
+    boveda:         req.body.boveda,
     fecha:          req.body.fecha,
-    cedula:         req.body.cedula,
-    valor:          req.body.valor,
-    estado:         req.body.estado
+    fecha:          req.body.fechasig,
+    valor:          req.body.valor
   };
 
   Pago.findOneAndUpdate({ _id: req.params.id }, updatedPago, { runValidators: true, context: 'query' })
@@ -109,10 +109,10 @@ router.put('/:id', (req, res) => {
             result: 
             {
               _id:            newResult._id,
-              cedula:         newResult.cedula,
+              boveda:         newResult.boveda,
               fecha:          newResult.fecha,
-              valor:          newResult.valor,
-              estado:         newResult.estado
+              fechasig:       newResult.fechasig,
+              valor:          newResult.valor
             }
           });
         })
@@ -123,20 +123,20 @@ router.put('/:id', (req, res) => {
     })
     .catch((err) => {
       if (err.errors) {
-        if (err.errors.cedula) {
-          res.status(400).json({ success: false, msg: err.errors.cedula.message });
+        if (err.errors.boveda) {
+          res.status(400).json({ success: false, msg: err.errors.boveda.message });
           return;
         }
         if (err.errors.fecha) {
           res.status(400).json({ success: false, msg: err.errors.fecha.message });
           return;
         }
-        if (err.errors.valor) {
-          res.status(400).json({ success: false, msg: err.errors.valor.message });
+        if (err.errors.fechasig) {
+          res.status(400).json({ success: false, msg: err.errors.fechasig.message });
           return;
         }
-        if (err.errors.estado) {
-          res.status(400).json({ success: false, msg: err.errors.telefono.message });
+        if (err.errors.valor) {
+          res.status(400).json({ success: false, msg: err.errors.valor.message });
           return;
         }
         // Show failed if all else fails for some reasons
@@ -155,10 +155,10 @@ router.delete('/:id', (req, res) => {
         msg: `Pago eliminado.`,
         result: {
           _id:          result._id,
-          cedula:       result.cedula,
+          boveda:       result.boveda,
           fecha:        result.fecha,
-          valor:        result.valor,
-          estado:       result.estado
+          fechasig:     result.fechasig,
+          valor:        result.valor
         }
       });
     })

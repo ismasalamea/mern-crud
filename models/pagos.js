@@ -12,23 +12,22 @@ const nombreValidador = [
 
 // Define the database model
 const PagoSchema = new mongoose.Schema({
-  cedula:{
+  boveda:{
     type: String,
-    required: [true, 'Cedula es obligatorio.'],
+    required: [true, 'Boveda es obligatorio.'],
   },
   fecha: {
     type: Date,
     required: [true, 'Fecha es requerido.']
   },
+  fechasig: {
+    type: Date,
+    required: [true, 'Fecha Siguiente es requerido.']
+  },
   valor: {
     type: Number,
     required: [true, 'Valor es requerido.'],
     default: 0
-  },
-  estado: {
-    type: Boolean,
-    default:true,
-    required:[true, 'Estado es requerido.'],
   },
 
 });

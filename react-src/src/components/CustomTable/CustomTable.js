@@ -4,6 +4,7 @@ import ModalUser from "../ModalUser/ModalUser";
 import ModalConfirmDelete from '../ModalConfirmDelete/ModalConfirmDelete';
 import ShowCertificado from "../ShowPDF/ShowCertificado";
 import Styles from "./style.module.css";
+import ModalPagos from "../ModalPagos/ModalPagos";
 
 class CustomTable extends PureComponent {
 	state = {
@@ -164,8 +165,20 @@ class CustomTable extends PureComponent {
 							<ShowCertificado
 								valores={item}
 								buttonTriggerTitle=''
-								buttonColor='black'
-							/>
+								buttonColor='orange'
+							/> 
+							<ModalPagos 
+								headerTitle='Pagos'
+								buttonTriggerTitle=''
+								buttonSubmitTitle=''
+								buttonColor='green'
+								userID={item._id}
+								onUserUpdated={this.props.onUserUpdated}
+								server={this.props.server}
+								iconName='dollar'
+								buttonSize='mini' 
+								
+							/> */
 							<ModalUser
 								headerTitle='Editar'
 								buttonTriggerTitle=''

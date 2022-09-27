@@ -1,0 +1,26 @@
+.FileUpload {
+  text-align: center;
+  font-weight: bold;
+}
+
+
+.Imagen {
+  background-color:royalblue;
+  color:white;
+  margin-bottom: 2px;
+  padding: 20px 20px 15px;
+  text-align: center;
+}
+
+.dropzone {
+  background-color:royalblue;
+  display:flex;
+  flex-direction: column ;
+  align-items:center;
+  padding: 10px;
+  border-width: 2;
+  border-radius: 2;
+  color:white;
+  outline: none;
+}
+
