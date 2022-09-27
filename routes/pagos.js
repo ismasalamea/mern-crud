@@ -43,10 +43,10 @@ router.get('/', (req, res) => {
 router.post('/', postLimiter, (req, res) => {
 
   let newPago = new Pago({
-    boveda:         req.body.boveda,
-    fecha:          req.body.fecha,
-    fechasig:       req.body.fechasig,
-    valor:          req.body.valor
+    bovedapag:         req.body.bovedapag,
+    fechapag:          req.body.fechapag,
+    fechasig:          req.body.fechasig,
+    valorpag:          req.body.valorpag
   });
 
   newPago.save()
@@ -55,31 +55,31 @@ router.post('/', postLimiter, (req, res) => {
         success: true,
         msg: `Pago Agregado!`,
         result: {
-          _id:         result._id,
-          boveda:      result.boveda,
-          fecha:       result.fecha,
-          fechasig:    result.fechasig,
-          valor:       result.valor
+          _id:           result._id,
+          bovedapag:     result.bovedapag,
+          fechapag:      result.fechapag,
+          fechasig:      result.fechasig,
+          valorpag:      result.valorpag
         }
       });
     })
     .catch((err) => {
       console.log(err);
       if (err.errors) {
-        if (err.errors.boveda) {
-          res.status(400).json({ success: false, msg: err.errors.boveda.message });
+        if (err.errors.bovedapag) {
+          res.status(400).json({ success: false, msg: err.errors.bovedapag.message });
           return;
         }
-        if (err.errors.fecha) {
-          res.status(400).json({ success: false, msg: err.errors.fecha.message });
+        if (err.errors.fechapag) {
+          res.status(400).json({ success: false, msg: err.errors.fechapag.message });
           return;
         }
         if (err.errors.fechasig) {
           res.status(400).json({ success: false, msg: err.errors.fechasig.message });
           return;
         }
-        if (err.errors.valor) {
-          res.status(400).json({ success: false, msg: err.errors.valor.message });
+        if (err.errors.valorpag) {
+          res.status(400).json({ success: false, msg: err.errors.valorpag.message });
           return;
         }
         // Show failed if all else fails for some reasons
@@ -93,10 +93,10 @@ router.put('/:id', (req, res) => {
 
 
   let updatedPago = {
-    boveda:         req.body.boveda,
-    fecha:          req.body.fecha,
-    fecha:          req.body.fechasig,
-    valor:          req.body.valor
+    bovedapag:         req.body.bovedapag,
+    fechapag:          req.body.fechapag,
+    fechasig:          req.body.fechasig,
+    valorpag:          req.body.valorpag
   };
 
   Pago.findOneAndUpdate({ _id: req.params.id }, updatedPago, { runValidators: true, context: 'query' })
@@ -108,11 +108,11 @@ router.put('/:id', (req, res) => {
             msg: `Pago Actualizado!`,
             result: 
             {
-              _id:            newResult._id,
-              boveda:         newResult.boveda,
-              fecha:          newResult.fecha,
-              fechasig:       newResult.fechasig,
-              valor:          newResult.valor
+              _id:              newResult._id,
+              bovedapag:        newResult.bovedapag,
+              fechapag:         newResult.fechapag,
+              fechasig:         newResult.fechasig,
+              valorpag:         newResult.valorpag
             }
           });
         })
@@ -123,20 +123,20 @@ router.put('/:id', (req, res) => {
     })
     .catch((err) => {
       if (err.errors) {
-        if (err.errors.boveda) {
-          res.status(400).json({ success: false, msg: err.errors.boveda.message });
+        if (err.errors.bovedapag) {
+          res.status(400).json({ success: false, msg: err.errors.bovedapag.message });
           return;
         }
-        if (err.errors.fecha) {
-          res.status(400).json({ success: false, msg: err.errors.fecha.message });
+        if (err.errors.fechapag) {
+          res.status(400).json({ success: false, msg: err.errors.fechapag.message });
           return;
         }
         if (err.errors.fechasig) {
           res.status(400).json({ success: false, msg: err.errors.fechasig.message });
           return;
         }
-        if (err.errors.valor) {
-          res.status(400).json({ success: false, msg: err.errors.valor.message });
+        if (err.errors.valorpag) {
+          res.status(400).json({ success: false, msg: err.errors.valorpag.message });
           return;
         }
         // Show failed if all else fails for some reasons
@@ -154,11 +154,11 @@ router.delete('/:id', (req, res) => {
         success: true,
         msg: `Pago eliminado.`,
         result: {
-          _id:          result._id,
-          boveda:       result.boveda,
-          fecha:        result.fecha,
-          fechasig:     result.fechasig,
-          valor:        result.valor
+          _id:             result._id,
+          bovedapag:       result.bovedapag,
+          fechapag:        result.fechapag,
+          fechasig:        result.fechasig,
+          valorpag:        result.valorpag
         }
       });
     })
