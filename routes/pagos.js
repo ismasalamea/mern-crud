@@ -43,7 +43,7 @@ router.get('/', (req, res) => {
 router.post('/', postLimiter, (req, res) => {
 
   let newPago = new Pago({
-    boveda:         req.body.cedula,
+    boveda:         req.body.boveda,
     fecha:          req.body.fecha,
     fechasig:       req.body.fechasig,
     valor:          req.body.valor
