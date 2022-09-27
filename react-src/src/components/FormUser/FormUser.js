@@ -14,6 +14,12 @@ const estadoOptions = [
   { key: false, text: 'No pagado', value: false },
 ]
 
+const tipoOptions = [
+  { key: 'Arrendada', text: 'Arrendada', value: 'Arrendada' },
+  { key: 'Propia', text: 'Propia', value: 'Propia' },
+  { key: 'No definida', text: 'No definida', value: 'No definida' },
+]
+
 class FormUser extends Component {
 
   constructor(props) {
@@ -21,6 +27,7 @@ class FormUser extends Component {
 
     this.state = {
       boveda: '',
+      tipo: '',
       nombre: '',
       apellido: '',
       fecha: '',
@@ -38,6 +45,7 @@ class FormUser extends Component {
 
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSelectChange = this.handleSelectChange.bind(this);
+    this.handleSelectChangeTipo = this.handleSelectChangeTipo.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
@@ -48,6 +56,7 @@ class FormUser extends Component {
         .then((response) => {
           this.setState({
             boveda: response.data.boveda,
+            tipo: response.data.tipo,
             nombre: response.data.nombre,
             apellido: response.data.apellido,
             fecha: response.data.fecha,
@@ -106,12 +115,18 @@ class FormUser extends Component {
     this.setState({ estado: data.value });
   }
 
+  handleSelectChangeTipo(e, data) {
+    this.setState({ tipo: data.value });
+  }
+
+
   handleSubmit(e) {
     // Prevent browser refresh
     e.preventDefault();
    // this.handleImageUpload(this.state.certificado);
     const user = {
       boveda: this.state.boveda,
+      tipo: this.state.tipo,      
       nombre: this.state.nombre,
       apellido: this.state.apellido,
       fecha: this.state.fecha,
@@ -142,6 +157,7 @@ class FormUser extends Component {
         if (!this.props.userID) {
           this.setState({
             boveda: '',
+            tipo: '',
             nombre: '',
             apellido: '',
             fecha: '',
@@ -187,10 +203,6 @@ class FormUser extends Component {
     return (
 
       <Form className={formClassName} onSubmit={this.handleSubmit}>
-        <Header as='h3' block color='blue'>Certificado de Defunción</Header>
-        
-       
-        
         <Header as='h3' block color='orange'>Datos del Fallecido</Header>
         <Form.Group widths='2' >
         <Form.Input
@@ -204,6 +216,17 @@ class FormUser extends Component {
             value={this.state.boveda}
             onChange={this.handleInputChange}
           />
+        <Form.Input
+          name='tipo'
+          control={Select}
+          label='Tipo de Propiedad'
+          options={tipoOptions}
+          placeholder=''
+          value={this.state.tipo}
+          onChange={this.handleSelectChangeTipo}
+          />
+          </Form.Group>
+          <Form.Group widths='2' >
         <Form.Input
           width={8} 
           label='Fecha de Defuncion'
@@ -296,6 +319,7 @@ class FormUser extends Component {
           onChange={this.handleSelectChange}
         />
         </Form.Group>
+        <Header as='h3' block color='blue'>Certificado de Defunción</Header>
         <div className="FileUpload">
           <Dropzone  
             onDrop={this.onImageDrop.bind(this)}
