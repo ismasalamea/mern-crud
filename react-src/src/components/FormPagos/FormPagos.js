@@ -17,87 +17,40 @@ class FormPagos extends Component {
     }
 
     this.handleInputChange = this.handleInputChange.bind(this);
-    this.handleSelectChange = this.handleSelectChange.bind(this);
-    this.handleSelectChangeTipo = this.handleSelectChangeTipo.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
-
-  fetchPagos() {
-    axios.get(`${this.server}/api/pagos/`)
-      .then((response) => {
-        this.setState({ pagos: response.data });
-
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }
-
-  UNSAFE_componentWillMount() {
-    // Fill in the form with the appropriate data if user id is provided
-    this.fetchPagos();
-  }
-
 
   handleInputChange(e) {
     const target = e.target;
     const value = target.type === 'checkbox' ? target.checked : target.value;
     const name = target.name;
-//    console.log(name + value)
     this.setState({ [name]: value });
   }
-
-  handleSelectChange(e, data) {
-    this.setState({ estado: data.value });
-  }
-
-  handleSelectChangeTipo(e, data) {
-    this.setState({ tipo: data.value });
-  }
-
 
   handleSubmit(e) {
     // Prevent browser refresh
     e.preventDefault();
    // this.handleImageUpload(this.state.certificado);
     const pagos = {
-      cedula: this.state.cedula,
-      fecha: this.state.fecha,
-      valor: this.state.valor,
-      estado: this.state.estado
+      bovedapag: this.props.bovedapag,
+      fechapag: this.state.fechapag,      
+      fechasig: this.state.fechasig,
+      valorpag: this.state.valorpag
     }
 
-    // Acknowledge that if the user id is provided, we're updating via PUT
-    // Otherwise, we're creating a new data via POST
-    const method = this.props.userID ? 'put' : 'post';
-    const params  = this.props.userID ? this.props.userID : '';
-
     axios({
-      method: method,
+      method: 'post',
       responseType: 'json',
-      url: `${this.props.server}/api/pagos/${params}`,
+      url: `${this.props.server}/api/pagos/`,
       data: pagos
     })
       .then((response) => {
         this.setState({
           formClassName: 'success',
           formSuccessMessage: response.data.msg
-        });
-        if (!this.props.userID) {
-          this.setState({
-            cedula: '',
-            fecha: '',
-            valor:'',
-            estado: ''
-          });
-           // .then(result=>console.log(result));
-          this.props.onUserAdded(response.data.result);
-        }
-        else {
-          this.props.onUserUpdated(response.data.result);
-        }
-
-      })
+                      });
+  //        this.onPagosAdded(response.pagos.result);  
+         })
       .catch((err) => {
         if (err.response) {
           if (err.response.data) {
@@ -128,7 +81,6 @@ class FormPagos extends Component {
     Registrar Pago:
   </Header>
 
- 
   <Form.Group widths='2' >
         <Form.Input
           width={8} 
@@ -181,10 +133,7 @@ class FormPagos extends Component {
           header='Advertenciasss!'
           content={formErrorMessage}
         />
-
-
         <br /><br /> {/* Yikes! Deal with Semantic UI React! */}
-      
       </Form>
 
     );

@@ -178,7 +178,7 @@ class CustomTable extends PureComponent {
 								iconName='dollar'
 								buttonSize='mini'
 								labels={["bovedapag","fechapag", "fechasig", "valorpag"]}
-								headers={["Boveda", "Fecha", "Proximo Pago", "Valor"]}
+								headers={["Boveda", "Fecha", "Proximo Pago", "Valor", "Accion"]}
 							/> 
 							<ModalUser
 								headerTitle='Editar'
