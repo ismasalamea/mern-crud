@@ -33,6 +33,8 @@ class FormUser extends Component {
       fecha: '',
       cedula: '',
       responsable: '',
+      direccion: '',
+      correo: '',
       telefono: '',
       estado: '',
       valor: '',
@@ -62,6 +64,8 @@ class FormUser extends Component {
             fecha: response.data.fecha,
             cedula: response.data.cedula,
             responsable: response.data.responsable,
+            direccion: response.data.direccion,
+            correo: response.data.correo,
             telefono: response.data.telefono,
             estado: response.data.estado,
             valor: response.data.valor,
@@ -132,6 +136,8 @@ class FormUser extends Component {
       fecha: this.state.fecha,
       cedula: this.state.cedula,
       responsable: this.state.responsable,
+      direccion: this.state.direccion,
+      correo: this.state.correo,
       telefono: this.state.telefono,
       estado: this.state.estado,
       valor: this.state.valor,
@@ -163,6 +169,8 @@ class FormUser extends Component {
             fecha: '',
             cedula: '',
             responsable: '',
+            direccion: '',
+            correo: '',
             telefono: '',
             estado: '',
             valor:'',
@@ -286,6 +294,29 @@ class FormUser extends Component {
           value={this.state.responsable}
           onChange={this.handleInputChange}
         />
+        </Form.Group>
+        <Form.Group width='equals'>        
+        <Form.Input
+          label='Direccion'
+          type='text'
+          placeholder=''
+          min={1}
+          max={50}
+          name='direccion'
+          required
+          value={this.state.direccion}
+          onChange={this.handleInputChange}
+        />
+         <Form.Input
+            label='Correo'
+            type='email'
+            placeholder='example@sayausi.com'
+            name='correo'
+            max={60}
+            required
+            value={this.state.correo}
+            onChange={this.handleInputChange}
+         />
         </Form.Group>
         <Form.Group>        
         <Form.Input

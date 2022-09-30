@@ -52,6 +52,8 @@ router.post('/', postLimiter, (req, res) => {
     cedula:         req.body.cedula,
     responsable:    req.body.responsable,
     telefono:       req.body.telefono,
+    direccion:      req.direccion.telefono,
+    correo:         req.correo.telefono,
     estado:         req.body.estado,
     valor:          req.body.valor,
     certificado:    req.body.certificado
@@ -63,18 +65,20 @@ router.post('/', postLimiter, (req, res) => {
         success: true,
         msg: `Registro Agregado!`,
         result: {
-          _id:      result._id,
-          boveda:   result.boveda,
-          tipo:     result.tipo,
-          nombre:   result.nombre,
-          apellido: result.apellido,
-          fecha:    result.fecha,
-          cedula:   result.cedula,
-          responsable:   result.responsable,
-          telefono:   result.telefono,     
-          estado:   result.estado,
-          valor: result.valor,
-          certificado: result.certificado
+          _id:          result._id,
+          boveda:       result.boveda,
+          tipo:         result.tipo,
+          nombre:       result.nombre,
+          apellido:     result.apellido,
+          fecha:        result.fecha,
+          cedula:       result.cedula,
+          responsable:  result.responsable,
+          direccion:    result.direccion,     
+          correo:       result.correo,     
+          telefono:     result.telefono,     
+          estado:       result.estado,
+          valor:        result.valor,
+          certificado:  result.certificado
         }
       });
     })
@@ -109,6 +113,14 @@ router.post('/', postLimiter, (req, res) => {
           res.status(400).json({ success: false, msg: err.errors.responsable.message });
           return;
         }
+        if (err.errors.direccion) {
+          res.status(400).json({ success: false, msg: err.errors.direccion.message });
+          return;
+        }
+        if (err.errors.correo) {
+          res.status(400).json({ success: false, msg: err.errors.correo.message });
+          return;
+        }
         if (err.errors.telefono) {
           res.status(400).json({ success: false, msg: err.errors.telefono.message });
           return;
@@ -138,16 +150,18 @@ router.put('/:id', (req, res) => {
 
   let updatedUser = {
     boveda:         req.body.boveda,
-    tipo:         req.body.tipo,
+    tipo:           req.body.tipo,
     nombre:         req.body.nombre,
     apellido:       req.body.apellido,
     fecha:          req.body.fecha,
     cedula:         req.body.cedula,
     responsable:    req.body.responsable,
+    direccion:      req.body.direccion,
+    correo:         req.body.correo,
     telefono:       req.body.telefono,
     estado:         req.body.estado,
     valor:          req.body.valor,
-    certificado:          req.body.certificado
+    certificado:    req.body.certificado
   };
 
   User.findOneAndUpdate({ _id: req.params.id }, updatedUser, { runValidators: true, context: 'query' })
@@ -167,6 +181,8 @@ router.put('/:id', (req, res) => {
               fecha:          newResult.fecha,
               cedula:         newResult.cedula,
               responsable:    newResult.responsable,
+              direccion:      newResult.direccion,        
+              correo:         newResult.correo,        
               telefono:       newResult.telefono,        
               estado:         newResult.estado,
               valor:          newResult.valor,
@@ -209,6 +225,14 @@ router.put('/:id', (req, res) => {
           res.status(400).json({ success: false, msg: err.errors.edad.message });
           return;
         }
+        if (err.errors.direccion) {
+          res.status(400).json({ success: false, msg: err.errors.direccion.message });
+          return;
+        }
+        if (err.errors.correo) {
+          res.status(400).json({ success: false, msg: err.errors.correo.message });
+          return;
+        }
         if (err.errors.telefono) {
           res.status(400).json({ success: false, msg: err.errors.telefono.message });
           return;
@@ -249,6 +273,8 @@ router.delete('/:id', (req, res) => {
           fecha:        result.fecha,
           cedula:       result.cedula,
           responsable:  result.responsable,
+          direccion:    result.direccion,
+          correo:       result.correo,
           telefono:     result.telefono,
           estado:       result.estado,
           valor:        result.valor,

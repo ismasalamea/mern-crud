@@ -41,6 +41,14 @@ const UserSchema = new mongoose.Schema({
     type: String,
     required: [true, 'Responsable es requerido.'],
   },
+  direccion: {
+    type: String,
+    required: [true, 'Responsable es requerido.'],
+  },
+  correo: {
+    type: String,
+    required: [true, 'Responsable es requerido.'],
+  },
   telefono: {
     type: String,
     required: [true, 'Telefono es requerido.'],
