@@ -5,8 +5,6 @@ import Styles from "./style.module.css";
 import ModalUser from '../ModalUser/ModalUser';
 import ModalTotal from "../ModalTotal/ModalTotal";
 
-
-
 export default class Tablita extends Component {
 	state = {
 		search: "",

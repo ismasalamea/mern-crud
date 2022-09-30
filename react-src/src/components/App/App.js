@@ -8,7 +8,7 @@ import Tablita from '../CustomTable/Tablita';
 class App extends Component {
   constructor() {
     super();
-  //  this.server = process.env.REACT_APP_API_URL || 'https://cementeriosayausi.herokuapp.com';
+    //  this.server = process.env.REACT_APP_API_URL || 'https://cementeriosayausi.herokuapp.com';
     this.server = 'https://cementeriosayausi.herokuapp.com';
     this.state = {
       users: [],
@@ -30,6 +30,7 @@ class App extends Component {
     axios.get(`${this.server}/api/users/`)
       .then((response) => {
         this.setState({ users: response.data });
+        //console.log(this.state.users)
 
       })
       .catch((err) => {
@@ -62,8 +63,8 @@ class App extends Component {
   render() {
     return (
       <div>
-        <div className='App'>          
-            <p className='App-intro'>Cementerio - GAD de la Parroquia Sayausi</p>
+        <div className='App'>
+          <p className='App-intro'>Cementerio - GAD de la Parroquia Sayausi</p>
         </div>
         <Container>
           <Tablita
@@ -76,8 +77,8 @@ class App extends Component {
         </Container>
         <br />
       </div>
-      
-      
+
+
     );
   }
 }

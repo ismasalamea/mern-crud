@@ -169,6 +169,7 @@ class FormUser extends Component {
             certificado: ''
           });
            // .then(result=>console.log(result));
+           
           this.props.onUserAdded(response.data.result);
         }
         else {

@@ -9,11 +9,9 @@ class FormPagos extends Component {
     super(props);
 
     this.state = {
-      pagos: [],
       formClassName: '',
       formSuccessMessage: '',
       formErrorMessage: '',
-      uploadedFile: null
     }
 
     this.handleInputChange = this.handleInputChange.bind(this);
@@ -32,12 +30,13 @@ class FormPagos extends Component {
     e.preventDefault();
    // this.handleImageUpload(this.state.certificado);
     const pagos = {
-      bovedapag: this.props.bovedapag,
+      bovedapag: this.props.valores.boveda,
       fechapag: this.state.fechapag,      
       fechasig: this.state.fechasig,
       valorpag: this.state.valorpag
-    }
+    }                         
 
+    
     axios({
       method: 'post',
       responseType: 'json',
@@ -49,7 +48,8 @@ class FormPagos extends Component {
           formClassName: 'success',
           formSuccessMessage: response.data.msg
                       });
-  //        this.onPagosAdded(response.pagos.result);  
+          console.log(response.data.result)
+          this.props.onPagoAdded(response.data.result);
          })
       .catch((err) => {
         if (err.response) {
@@ -77,13 +77,26 @@ class FormPagos extends Component {
 
     return (
       <Form className={formClassName} onSubmit={this.handleSubmit}>   
-        <Header as='h3' block color='green'>
-    Registrar Pago:
+        <Header as='h3' block color='violet'>
+    Registrar Pago
   </Header>
 
-  <Form.Group widths='2' >
+  <Message 
+          success
+          color='blue'
+          header='Mensaje:'
+          content={formSuccessMessage}
+        />
+        <Message
+          warning
+          color='yellow'
+          header='Advertencia!'
+          content={formErrorMessage}
+        />
+
+  <Form.Group  widths='equal' >
         <Form.Input
-          width={8} 
+          width={4} 
           label='Fecha de Pago'
           name='fechapag'
           type='date'
@@ -93,7 +106,7 @@ class FormPagos extends Component {
           onChange={this.handleInputChange}
         />        
         <Form.Input
-          width={8} 
+          width={4} 
           label='Fecha PROXIMA de Pago'
           name='fechasig'
           type='date'
@@ -114,25 +127,12 @@ class FormPagos extends Component {
         value={this.state.valorpag}
         onChange={this.handleInputChange}
      />
-       <Button name='user' color={this.props.buttonColor} floated='right'>
-          <Icon name='save' />
-            {this.props.buttonSubmitTitle}
-          </Button>      
+   
 
 </Form.Group>
- 
-        <Message
-          success
-          color='blue'
-          header='Mensaje:'
-          content={formSuccessMessage}
-        />
-        <Message
-          warning
-          color='yellow'
-          header='Advertenciasss!'
-          content={formErrorMessage}
-        />
+<Button name='user' color={this.props.buttonColor} size='mini' floated='right'>
+          <Icon name='save' /> {this.props.buttonSubmitTitle}
+      </Button>   
         <br /><br /> {/* Yikes! Deal with Semantic UI React! */}
       </Form>
 

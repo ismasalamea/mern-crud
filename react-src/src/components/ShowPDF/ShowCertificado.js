@@ -56,7 +56,7 @@ class ShowCertificado extends Component {
     return(
         <Modal trigger={
             <Button disabled={!this.props.valores.certificado ? true : false } 
-            color={this.props.buttonColor} 
+            color={this.props.buttonColor} size='mini' icon
             >
               <Icon name='download' />
               {this.props.buttonTriggerTitle}

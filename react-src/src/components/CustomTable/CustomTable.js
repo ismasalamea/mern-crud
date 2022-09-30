@@ -146,61 +146,59 @@ class CustomTable extends PureComponent {
 		return (
 			<Table.Body>
 				{(data || []).map((item, index) => (
-					<Table.Row key={item._id}>
-						
-
+					<Table.Row >
 						{(labels || []).map((label, index) => (
-							<Table.Cell key={label._id}>
+							<Table.Cell >
 								<div className={Styles.cell}>
 									{label === "fecha" ? item[label].split("T")[0] : item[label] || 0}
 								</div>
 							</Table.Cell>
 						))}
-
-						<Table.Cell textAlign='center'>
+						<Table.Cell >
 							<Icon color={item.estado ? 'green' : 'red'} name={item.estado ? 'checkmark box' : 'cancel'} size='large' />
 						</Table.Cell>
-
-						<Button.Group widths='4' size='mini'>
-							<ShowCertificado
-								valores={item}
-								buttonTriggerTitle=''
-								buttonColor='orange'
-							/> 
-							<ModalPagos 
-								headerTitle='Pagos'
-								buttonTriggerTitle=''
-								buttonSubmitTitle=''
-								buttonColor='green'
-								valores={item}
-								onUserUpdated={this.props.onUserUpdated}
-								server={this.props.server}
-								iconName='dollar'
-								buttonSize='mini'
-								labels={["bovedapag","fechapag", "fechasig", "valorpag"]}
-								headers={["Boveda", "Fecha", "Proximo Pago", "Valor", "Accion"]}
-							/> 
-							<ModalUser
-								headerTitle='Editar'
-								buttonTriggerTitle=''
-								buttonSubmitTitle='Guardar'
-								buttonColor='blue'
-								userID={item._id}
-								onUserUpdated={this.props.onUserUpdated}
-								server={this.props.server}
-								iconName='write'
-								buttonSize='mini'
-							/>
-							<ModalConfirmDelete
-								headerTitle='Eliminar'
-								buttonTriggerTitle=''
-								buttonColor='red'
-								user={item}
-								onUserDeleted={this.props.onUserDeleted}
-								server={this.props.server}
-								iconName='delete'
-							/>
+						<Table.Cell textAlign='center'>
+							<Button.Group size='mini'>
+								<ShowCertificado
+									valores={item}
+									buttonTriggerTitle=''
+									buttonColor='orange'
+								/> 
+								<ModalPagos 
+									headerTitle='Pagos'
+									buttonTriggerTitle=''
+									buttonSubmitTitle=''
+									buttonColor='green'
+									valores={item}
+									onUserUpdated={this.props.onUserUpdated}
+									server={this.props.server}
+									iconName='dollar'
+									buttonSize='mini'
+									labels={["bovedapag","fechapag", "fechasig", "valorpag"]}
+									headers={["Boveda", "Fecha de Pago", "Proximo Pago", "Valor", "Accion"]}
+								/> 
+								<ModalUser
+									headerTitle='Editar'
+									buttonTriggerTitle=''
+									buttonSubmitTitle='Guardar'
+									buttonColor='blue'
+									userID={item._id}
+									onUserUpdated={this.props.onUserUpdated}
+									server={this.props.server}
+									iconName='write'
+									buttonSize='mini'
+								/>
+								<ModalConfirmDelete
+									headerTitle='Eliminar'
+									buttonTriggerTitle=''
+									buttonColor='red'
+									user={item}
+									onUserDeleted={this.props.onUserDeleted}
+									server={this.props.server}
+									iconName='delete'
+								/>
 						</Button.Group>
+						</Table.Cell>
 					</Table.Row>
 				))}
 			</Table.Body>

@@ -29,7 +29,7 @@ class ModalPagoDelete extends Component {
     })
     .then((response) => {
       this.handleClose();
-    //  this.props.onUserDeleted(response.data.result);
+      this.props.onPagoDeleted(response.data.result);
     })
     .catch((err) => {
       this.handleClose();
@@ -39,20 +39,18 @@ class ModalPagoDelete extends Component {
 
   render() {
     return (
-      <Modal
-        trigger={<Button onClick={this.handleOpen} color={this.props.buttonColor} size='mini'>
+      <Modal size='tiny' centered
+        trigger={<Button onClick={this.handleOpen} color={this.props.buttonColor} size='mini' icon>
           <Icon name={this.props.iconName} />
           {this.props.buttonTriggerTitle}
           </Button>}
         open={this.state.modalOpen}
         onClose={this.handleClose}
         dimmer='inverted'
-        size='tiny'
-        circular
       >
         <Modal.Header>{this.props.headerTitle}</Modal.Header>
         <Modal.Content>
-          <p>Esta seguro de eliminar  ?</p>
+          <p>Esta seguro que desea de eliminar el pago de la boveda <strong>{this.props.pagos.bovedapag} </strong>?</p>
         </Modal.Content>
         <Modal.Actions>
           <Button onClick={this.handleSubmit} data-pagoID={this.props.pagos._id} color='red'>Si</Button>
