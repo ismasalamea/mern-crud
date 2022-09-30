@@ -295,7 +295,7 @@ class FormUser extends Component {
           onChange={this.handleInputChange}
         />
         </Form.Group>
-        <Form.Group width='equals'>        
+        <Form.Group widths='equal'>        
         <Form.Input
           label='Direccion'
           type='text'
@@ -318,9 +318,9 @@ class FormUser extends Component {
             onChange={this.handleInputChange}
          />
         </Form.Group>
-        <Form.Group>        
+        <Form.Group widths='equal'>
         <Form.Input
-          width={5} 
+          width={8} 
           label='Telefono'
           type='text'
           placeholder='Telefono'

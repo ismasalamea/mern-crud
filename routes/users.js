@@ -51,7 +51,7 @@ router.post('/', postLimiter, (req, res) => {
     fecha:          req.body.fecha,
     cedula:         req.body.cedula,
     responsable:    req.body.responsable,
-    direccion:      req.body.telefono,
+    direccion:      req.body.direccion,
     correo:         req.body.correo,
     telefono:       req.body.telefono,
     estado:         req.body.estado,
