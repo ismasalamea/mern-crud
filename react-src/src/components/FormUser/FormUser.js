@@ -14,6 +14,12 @@ const estadoOptions = [
   { key: false, text: 'No pagado', value: false },
 ]
 
+const formaOptions = [
+  { key: 'Boveda', text: 'Boveda', value: 'Boveda' },
+  { key: 'Nicho', text: 'Nicho', value: 'Nicho' },
+]
+
+
 const tipoOptions = [
   { key: 'Arrendada', text: 'Arrendada', value: 'Arrendada' },
   { key: 'Propia', text: 'Propia', value: 'Propia' },
@@ -28,6 +34,7 @@ class FormUser extends Component {
     this.state = {
       boveda: '',
       tipo: '',
+      forma: '',
       nombre: '',
       apellido: '',
       fecha: '',
@@ -48,6 +55,7 @@ class FormUser extends Component {
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSelectChange = this.handleSelectChange.bind(this);
     this.handleSelectChangeTipo = this.handleSelectChangeTipo.bind(this);
+    this.handleSelectChangeForma = this.handleSelectChangeForma.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
@@ -59,6 +67,7 @@ class FormUser extends Component {
           this.setState({
             boveda: response.data.boveda,
             tipo: response.data.tipo,
+            forma: response.data.forma,
             nombre: response.data.nombre,
             apellido: response.data.apellido,
             fecha: response.data.fecha,
@@ -123,6 +132,10 @@ class FormUser extends Component {
     this.setState({ tipo: data.value });
   }
 
+  handleSelectChangeForma(e, data) {
+    this.setState({ forma: data.value });
+  }
+
 
   handleSubmit(e) {
     // Prevent browser refresh
@@ -131,6 +144,7 @@ class FormUser extends Component {
     const user = {
       boveda: this.state.boveda,
       tipo: this.state.tipo,      
+      forma: this.state.forma,    
       nombre: this.state.nombre,
       apellido: this.state.apellido,
       fecha: this.state.fecha,
@@ -164,6 +178,7 @@ class FormUser extends Component {
           this.setState({
             boveda: '',
             tipo: '',
+            forma: '',
             nombre: '',
             apellido: '',
             fecha: '',
@@ -216,7 +231,7 @@ class FormUser extends Component {
         <Form.Group widths='2' >
         <Form.Input
             width={5} 
-            label='Boveda'
+            label='Espacio'
             type='text'
             maxLength='5'
             placeholder='A0001'
@@ -228,16 +243,25 @@ class FormUser extends Component {
         <Form.Input
           name='tipo'
           control={Select}
-          label='Tipo de Propiedad'
+          label='Propiedad'
           options={tipoOptions}
           placeholder=''
           value={this.state.tipo}
           onChange={this.handleSelectChangeTipo}
           />
+        <Form.Input
+          name='forma'
+          control={Select}
+          label='Tipo'
+          options={formaOptions}
+          placeholder=''
+          value={this.state.forma}
+          onChange={this.handleSelectChangeForma}
+          />
           </Form.Group>
           <Form.Group widths='2' >
         <Form.Input
-          width={8} 
+          width={5} 
           label='Fecha de Defuncion'
           name='fecha'
           type='date'

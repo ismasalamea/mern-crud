@@ -46,6 +46,7 @@ router.post('/', postLimiter, (req, res) => {
   let newUser = new User({
     boveda:         req.body.boveda,
     tipo:           req.body.tipo,
+    forma:          req.body.forma,
     nombre:         req.body.nombre,
     apellido:       req.body.apellido,
     fecha:          req.body.fecha,
@@ -68,6 +69,7 @@ router.post('/', postLimiter, (req, res) => {
           _id:          result._id,
           boveda:       result.boveda,
           tipo:         result.tipo,
+          forma:        result.forma,
           nombre:       result.nombre,
           apellido:     result.apellido,
           fecha:        result.fecha,
@@ -91,6 +93,10 @@ router.post('/', postLimiter, (req, res) => {
         }
         if (err.errors.tipo) {
           res.status(400).json({ success: false, msg: err.errors.tipo.message });
+          return;
+        }
+        if (err.errors.forma) {
+          res.status(400).json({ success: false, msg: err.errors.forma.message });
           return;
         }
         if (err.errors.nombre) {
@@ -151,6 +157,7 @@ router.put('/:id', (req, res) => {
   let updatedUser = {
     boveda:         req.body.boveda,
     tipo:           req.body.tipo,
+    forma:          req.body.forma,
     nombre:         req.body.nombre,
     apellido:       req.body.apellido,
     fecha:          req.body.fecha,
@@ -176,6 +183,7 @@ router.put('/:id', (req, res) => {
               _id: newResult._id,
               boveda:         newResult.boveda,
               tipo:           newResult.tipo,
+              forma:          newResult.forma,
               nombre:         newResult.nombre,
               apellido:       newResult.apellido,
               fecha:          newResult.fecha,
@@ -203,6 +211,10 @@ router.put('/:id', (req, res) => {
         }
         if (err.errors.tipo) {
           res.status(400).json({ success: false, msg: err.errors.tipo.message });
+          return;
+        }
+        if (err.errors.forma) {
+          res.status(400).json({ success: false, msg: err.errors.forma.message });
           return;
         }
         if (err.errors.nombre) {
@@ -268,6 +280,7 @@ router.delete('/:id', (req, res) => {
           _id:          result._id,
           boveda:       result.boveda,
           tipo:         result.tipo,
+          forma:        result.forma,
           nombre:       result.nombre,
           apellido:     result.apellido,
           fecha:        result.fecha,

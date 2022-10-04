@@ -20,6 +20,10 @@ const UserSchema = new mongoose.Schema({
     type: String,
     required: [true, 'Tipo es requerido.']
   },
+  forma: {
+    type: String,
+    required: [true, 'Tipo es requerido.']
+  },  
   cedula:{
     type: String,
     required: [true, 'Cedula es obligatorio.'],
