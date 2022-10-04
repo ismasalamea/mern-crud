@@ -24,10 +24,10 @@ export default class Tablita extends Component {
 			<Grid columns={3} >
             <Grid.Column >
           	<ModalUser
-            	headerTitle='Añadir Boveda'
-            	buttonTriggerTitle=' Añadir Boveda'
-            	buttonSubmitTitle='Anadir'
-            	buttonColor='blue'
+            	headerTitle='Añadir Espacio'
+            	buttonTriggerTitle=' Añadir Espacio'
+            	buttonSubmitTitle='Guardar'
+            	buttonColor='green'
             	onUserAdded={this.props.onUserAdded}
 				server={this.props.server}
 				iconName='user'
@@ -36,7 +36,7 @@ export default class Tablita extends Component {
 			<Grid.Column > 
 				
 			<ModalTotal
-				headerTitle='Totales Registrados'
+				headerTitle='Totales'
 				buttonTriggerTitle=' Totales Registrados'
             	buttonColor='orange'
 				data={this.props.data}						
@@ -60,8 +60,8 @@ export default class Tablita extends Component {
             </Grid>
 			<CustomTable
 				data={this.props.data}
-				headers={["Boveda", "Nombre", "Apellido", "Fecha", "Valor","Estado","Acciones"]}
-				labels={["boveda","nombre", "apellido", "fecha", "valor"]}
+				headers={["Boveda", "Nombre", "Apellido", "Fecha", "Valor","Responsable","Estado", "Acciones"]}
+				labels={["boveda","nombre", "apellido", "fecha", "valor", "responsable"]}
 				pageRows={20} //Optional
 				searchQuery={search} //Optional
 				footerPages={5} //Optional
