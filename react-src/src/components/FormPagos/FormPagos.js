@@ -30,6 +30,7 @@ class FormPagos extends Component {
     e.preventDefault();
    // this.handleImageUpload(this.state.certificado);
     const pagos = {
+      codboveda: this.props.valores._id,
       bovedapag: this.props.valores.boveda,
       fechapag: this.state.fechapag,      
       fechasig: this.state.fechasig,

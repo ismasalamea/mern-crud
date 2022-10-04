@@ -165,7 +165,7 @@ class CustomTable extends PureComponent {
 									buttonColor='orange'
 								/> 
 								<ModalPagos 
-									headerTitle='Pagos'
+									headerTitle='Detalle de Pagos'
 									buttonTriggerTitle=''
 									buttonSubmitTitle=''
 									buttonColor='green'

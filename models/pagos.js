@@ -3,9 +3,13 @@ const unique = require('mongoose-unique-validator');
 
 // Define the database model
 const PagoSchema = new mongoose.Schema({
+  codboveda: {
+    type: String,
+    required: [true, 'Codigo es obligatorio.'],
+  },  
   bovedapag: {
     type: String,
-    required: [true, 'Bovedas es obligatorio.'],
+    required: [true, 'Boveda es obligatorio.'],
   },
   fechapag: {
     type: Date,

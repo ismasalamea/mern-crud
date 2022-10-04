@@ -23,7 +23,7 @@ class ModalPagos extends Component {
   }
 
   fetchPagos() {
-    axios.get(`${this.props.server}/api/pagos/boveda/${this.props.valores.boveda}`)
+    axios.get(`${this.props.server}/api/pagos/boveda/${this.props.valores.codboveda}`)
       .then((response) => {
         this.setState({ pagos: response.data });
       })
@@ -69,9 +69,9 @@ class ModalPagos extends Component {
         dimmer='inverted'
         closeIcon>
 
-        <Header icon='user' content={this.props.headerTitle} />
+        <Header icon='money' content={this.props.headerTitle} />
         <Modal.Content>
-          <Header as='h3' block color='orange'>Detalle de pagos</Header>
+          <Header as='h3' block color='orange'>Espacio: {this.props.valores.boveda}</Header>
           <Table celled>
             <Table.Header>
               <Table.Row>

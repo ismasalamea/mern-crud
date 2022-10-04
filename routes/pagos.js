@@ -42,7 +42,7 @@ router.get('/', (req, res) => {
 
 // READ (BOVEDA)
 router.get('/boveda/:bov', (req, res) => {
-  Pago.find({ bovedapag: req.params.bov })
+  Pago.find({ codboveda: req.params.bov })
     .then((result) => {
       res.json(result);
     })
@@ -55,6 +55,7 @@ router.get('/boveda/:bov', (req, res) => {
 router.post('/', postLimiter, (req, res) => {
 
   let newPago = new Pago({
+    codboveda:         req.body.codboveda,
     bovedapag:         req.body.bovedapag,
     fechapag:          req.body.fechapag,
     fechasig:          req.body.fechasig,
@@ -68,6 +69,7 @@ router.post('/', postLimiter, (req, res) => {
         msg: `Pago Agregado!`,
         result: {
           _id:           result._id,
+          codboveda:     result.codboveda,
           bovedapag:     result.bovedapag,
           fechapag:      result.fechapag,
           fechasig:      result.fechasig,
@@ -78,6 +80,10 @@ router.post('/', postLimiter, (req, res) => {
     .catch((err) => {
       console.log(err);
       if (err.errors) {
+        if (err.errors.codboveda) {
+          res.status(400).json({ success: false, msg: err.errors.codboveda.message });
+          return;
+        }
         if (err.errors.bovedapag) {
           res.status(400).json({ success: false, msg: err.errors.bovedapag.message });
           return;
@@ -105,6 +111,7 @@ router.put('/:id', (req, res) => {
 
 
   let updatedPago = {
+    codboveda:         req.body.codboveda,
     bovedapag:         req.body.bovedapag,
     fechapag:          req.body.fechapag,
     fechasig:          req.body.fechasig,
@@ -121,6 +128,7 @@ router.put('/:id', (req, res) => {
             result: 
             {
               _id:              newResult._id,
+              codboveda:        newResult.codboveda,
               bovedapag:        newResult.bovedapag,
               fechapag:         newResult.fechapag,
               fechasig:         newResult.fechasig,
@@ -135,6 +143,10 @@ router.put('/:id', (req, res) => {
     })
     .catch((err) => {
       if (err.errors) {
+        if (err.errors.codboveda) {
+          res.status(400).json({ success: false, msg: err.errors.codboveda.message });
+          return;
+        }
         if (err.errors.bovedapag) {
           res.status(400).json({ success: false, msg: err.errors.bovedapag.message });
           return;
@@ -167,6 +179,7 @@ router.delete('/:id', (req, res) => {
         msg: `Pago eliminado.`,
         result: {
           _id:             result._id,
+          codboveda:       result.codboveda,
           bovedapag:       result.bovedapag,
           fechapag:        result.fechapag,
           fechasig:        result.fechasig,
