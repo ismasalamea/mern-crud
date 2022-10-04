@@ -23,7 +23,8 @@ class ModalPagos extends Component {
   }
 
   fetchPagos() {
-    axios.get(`${this.props.server}/api/pagos/boveda/${this.props.valores.codboveda}`)
+    console.log(this.props.valores.codboveda)
+    axios.get(`${this.props.server}/api/pagos/boveda/${this.props.valores._id}`)
       .then((response) => {
         this.setState({ pagos: response.data });
       })
@@ -39,12 +40,12 @@ class ModalPagos extends Component {
     this.setState({ pagos: pagos });
   }
 
-
   handlePagoDeleted(pago) {
     let pagos = this.state.pagos.slice();
     pagos = pagos.filter(u => { return u._id !== pago._id; });
     this.setState({ pagos: pagos });
   }
+  
   handleInputChange(e) {
     const target = e.target;
     const value = target.type === 'checkbox' ? target.checked : target.value;
@@ -97,11 +98,10 @@ class ModalPagos extends Component {
                   ))}
                   <Table.Cell width={2}>
                     <ComprobantePago
-                    buttonTriggerTitle=''
-                    valores={this.props.valores}
-                    pagos={item}
+                      buttonTriggerTitle=''
+                      valores={this.props.valores}
+                      pagos={item}
                     />
-
                     <ModalPagoDelete
                       headerTitle='Eliminar'
                       buttonTriggerTitle=''
