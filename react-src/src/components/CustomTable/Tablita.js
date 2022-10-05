@@ -1,9 +1,14 @@
 import React, { Component } from "react";
+import { Input, Grid, Button } from "semantic-ui-react";
+import ExportExcel from "react-export-excel"
 import CustomTable from "./CustomTable"
-import { Input, Grid } from "semantic-ui-react";
 import Styles from "./style.module.css";
 import ModalUser from '../ModalUser/ModalUser';
 import ModalTotal from "../ModalTotal/ModalTotal";
+
+const ExcelFile = ExportExcel.ExcelFile;
+const ExcelSheet = ExportExcel.ExcelSheet;
+const ExcelColumn = ExportExcel.ExcelColumn;
 
 export default class Tablita extends Component {
 	state = {
@@ -21,7 +26,7 @@ export default class Tablita extends Component {
 		const { search } = this.state;
 		return (
 			<div className={Styles.container}>
-			<Grid columns={3} >
+			<Grid columns={4} >
             <Grid.Column >
           	<ModalUser
             	headerTitle='Añadir Espacio'
@@ -34,7 +39,25 @@ export default class Tablita extends Component {
 			/>
 			</Grid.Column> 
 			<Grid.Column > 
-				
+			<ExcelFile element={
+				<Button color='blue' icon>Exportar a Excel</Button>} filename="base_cementerio_sayausi">
+				<ExcelSheet data={this.props.data} name="Hoja1">
+					<ExcelColumn label="Espacio" value="boveda"></ExcelColumn>
+					<ExcelColumn label="Tipo" value="forma"></ExcelColumn>
+					<ExcelColumn label="Estado" value="tipo"></ExcelColumn>										
+					<ExcelColumn label="Nombre" value="nombre"></ExcelColumn>										
+					<ExcelColumn label="Apellido" value="apellido"></ExcelColumn>										
+					<ExcelColumn label="FechaDefuncion" value="fecha"></ExcelColumn>										
+					<ExcelColumn label="Responsable" value="responsable"></ExcelColumn>										
+					<ExcelColumn label="Direccion" value="direccion"></ExcelColumn>										
+					<ExcelColumn label="Correo" value="correo"></ExcelColumn>										
+					<ExcelColumn label="Telefono" value="telefono"></ExcelColumn>										
+					<ExcelColumn label="Estado" value="estado"></ExcelColumn>										
+					<ExcelColumn label="ValorPendiente" value="valor"></ExcelColumn>										
+				</ExcelSheet>
+			</ExcelFile>
+			</Grid.Column>
+			<Grid.Column > 
 			<ModalTotal
 				headerTitle='Totales'
 				buttonTriggerTitle=' Totales Registrados'

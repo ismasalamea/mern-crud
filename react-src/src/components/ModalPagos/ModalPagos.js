@@ -45,15 +45,13 @@ class ModalPagos extends Component {
     pagos = pagos.filter(u => { return u._id !== pago._id; });
     this.setState({ pagos: pagos });
   }
-  
+
   handleInputChange(e) {
     const target = e.target;
     const value = target.type === 'checkbox' ? target.checked : target.value;
     const name = target.name;
     this.setState({ [name]: value });
   }
-
-  
 
   componentDidMount() {
    // this.fetchPagos()
