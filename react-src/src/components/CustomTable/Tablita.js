@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Input, Grid, Button } from "semantic-ui-react";
+import { Input, Grid, Button, Icon } from "semantic-ui-react";
 import ExportExcel from "react-export-excel"
 import CustomTable from "./CustomTable"
 import Styles from "./style.module.css";
@@ -22,17 +22,30 @@ export default class Tablita extends Component {
 		});
 	};
 
+	
+
 	render() {
 		const { search } = this.state;
+		const tabla = this.props.data;
+		tabla.forEach(object =>{
+			if(object.estado === false ){
+				object.estado = 'No pagado';
+			}else{
+				object.estado = 'Pagado';
+			}
+		});
+		tabla.forEach(object =>{
+				object.fecha = object.fecha.split("T")[0];
+		});
 		return (
 			<div className={Styles.container}>
 			<Grid columns={4} >
             <Grid.Column >
           	<ModalUser
-            	headerTitle='Añadir Espacio'
-            	buttonTriggerTitle=' Añadir Espacio'
+            	headerTitle='Añadir Unidad de Sepultura'
+            	buttonTriggerTitle=' Añadir Unidad de Sepultura'
             	buttonSubmitTitle='Guardar'
-            	buttonColor='green'
+            	buttonColor='brown'
             	onUserAdded={this.props.onUserAdded}
 				server={this.props.server}
 				iconName='user'
@@ -40,8 +53,8 @@ export default class Tablita extends Component {
 			</Grid.Column> 
 			<Grid.Column > 
 			<ExcelFile element={
-				<Button color='blue' icon>Exportar a Excel</Button>} filename="base_cementerio_sayausi">
-				<ExcelSheet data={this.props.data} name="Hoja1">
+				<Button color='blue' icon><Icon name='database' /> Exportar a Excel</Button>} filename="base_cementerio_sayausi">
+				<ExcelSheet data={tabla} name="Hoja1">
 					<ExcelColumn label="Espacio" value="boveda"></ExcelColumn>
 					<ExcelColumn label="Tipo" value="forma"></ExcelColumn>
 					<ExcelColumn label="Estado" value="tipo"></ExcelColumn>										
@@ -52,7 +65,7 @@ export default class Tablita extends Component {
 					<ExcelColumn label="Direccion" value="direccion"></ExcelColumn>										
 					<ExcelColumn label="Correo" value="correo"></ExcelColumn>										
 					<ExcelColumn label="Telefono" value="telefono"></ExcelColumn>										
-					<ExcelColumn label="Estado" value="estado"></ExcelColumn>										
+					<ExcelColumn label="Pagado" value="estado"></ExcelColumn>										
 					<ExcelColumn label="ValorPendiente" value="valor"></ExcelColumn>										
 				</ExcelSheet>
 			</ExcelFile>

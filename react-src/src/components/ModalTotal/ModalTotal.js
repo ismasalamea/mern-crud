@@ -23,6 +23,7 @@ class ModalTotal extends Component {
         const solopropias = this.props.data.filter(item => item.tipo === 'Propia')
         const soloarrendadas = this.props.data.filter(item => item.tipo === 'Arrendada')
         const solosindefinir = this.props.data.filter(item => item.tipo === 'No definida')
+        
         const sumapropias = solopropias.map(item => item.valor).reduce((prev, curr) => prev + curr, 0);
         const sumaarrendadas = soloarrendadas.map(item => item.valor).reduce((prev, curr) => prev + curr, 0);
         const sumasindefinir = solosindefinir.map(item => item.valor).reduce((prev, curr) => prev + curr, 0);

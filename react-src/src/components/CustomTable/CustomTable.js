@@ -155,7 +155,7 @@ class CustomTable extends PureComponent {
 							</Table.Cell>
 						))}
 						<Table.Cell >
-							<Icon color={item.estado ? 'green' : 'red'} name={item.estado ? 'checkmark box' : 'cancel'} size='large' />
+							<Icon color={item.estado === 'Pagado' ? 'green' : 'red'} name={item.estado === 'Pagado' ? 'checkmark box' : 'cancel'} size='large' />
 						</Table.Cell>
 						<Table.Cell textAlign='center'>
 							<Button.Group size='mini'>
