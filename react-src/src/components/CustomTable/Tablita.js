@@ -96,8 +96,8 @@ export default class Tablita extends Component {
             </Grid>
 			<CustomTable
 				data={this.props.data}
-				headers={["Boveda", "Nombre", "Apellido", "Fecha", "Valor","Responsable","Estado", "Acciones"]}
-				labels={["boveda","nombre", "apellido", "fecha", "valor", "responsable"]}
+				headers={["Codigo", "Tipo", "Propiedad",  "Nombre", "Apellido", "Fecha", "Valor","Responsable","Estado", "Acciones"]}
+				labels={["boveda","forma","tipo","nombre", "apellido", "fecha", "valor", "responsable"]}
 				pageRows={20} //Optional
 				searchQuery={search} //Optional
 				footerPages={5} //Optional

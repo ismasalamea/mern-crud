@@ -1,5 +1,5 @@
 import React, { PureComponent } from "react";
-import { Icon, Menu, Table, Button } from "semantic-ui-react";
+import { Icon, Menu, Table, Button, Label } from "semantic-ui-react";
 import ModalUser from "../ModalUser/ModalUser";
 import ModalConfirmDelete from '../ModalConfirmDelete/ModalConfirmDelete';
 import ShowCertificado from "../ShowPDF/ShowCertificado";
@@ -148,9 +148,9 @@ class CustomTable extends PureComponent {
 				{(data || []).map((item, index) => (
 					<Table.Row >
 						{(labels || []).map((label, index) => (
-							<Table.Cell >
-								<div className={Styles.cell}>
-									{label === "fecha" ? item[label].split("T")[0] : item[label] || 0}
+							<Table.Cell   >
+								<div className={Styles.cell}>									
+									{label === "fecha" ? item[label].split("T")[0] : item[label] || <Label color='red' circular>Vacio</Label>}
 								</div>
 							</Table.Cell>
 						))}
