@@ -21,12 +21,14 @@ export default class Tablita extends Component {
 			[name]: value,
 		});
 	};
+	
 
 	
 
 	render() {
 		const { search } = this.state;
-		const tabla = this.props.data;
+		const tabla = JSON.parse(JSON.stringify(this.props.data));
+		console.log(tabla)
 		tabla.forEach(object =>{
 			if(object.estado === false ){
 				object.estado = 'No pagado';
@@ -61,6 +63,7 @@ export default class Tablita extends Component {
 					<ExcelColumn label="Nombre" value="nombre"></ExcelColumn>										
 					<ExcelColumn label="Apellido" value="apellido"></ExcelColumn>										
 					<ExcelColumn label="FechaDefuncion" value="fecha"></ExcelColumn>										
+					<ExcelColumn label="Cedula" value="cedula"></ExcelColumn>										
 					<ExcelColumn label="Responsable" value="responsable"></ExcelColumn>										
 					<ExcelColumn label="Direccion" value="direccion"></ExcelColumn>										
 					<ExcelColumn label="Correo" value="correo"></ExcelColumn>										
@@ -96,8 +99,8 @@ export default class Tablita extends Component {
             </Grid>
 			<CustomTable
 				data={this.props.data}
-				headers={["Codigo", "Tipo", "Propiedad",  "Nombre", "Apellido", "Fecha", "Valor","Responsable","Estado", "Acciones"]}
-				labels={["boveda","forma","tipo","nombre", "apellido", "fecha", "valor", "responsable"]}
+				headers={["Codigo", "Tipo", "Propiedad",  "Nombre", "Apellido", "Fecha", "Valor","Estado", "Acciones"]}
+				labels={["boveda","forma","tipo","nombre", "apellido", "fecha", "valor"]}
 				pageRows={20} //Optional
 				searchQuery={search} //Optional
 				footerPages={5} //Optional
