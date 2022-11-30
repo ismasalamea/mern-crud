@@ -32,6 +32,7 @@ class FormPagos extends Component {
     const pagos = {
       codboveda: this.props.valores._id,
       bovedapag: this.props.valores.boveda,
+      numero_fac: this.state.numero_fac,      
       fechapag: this.state.fechapag,      
       fechasig: this.state.fechasig,
       valorpag: this.state.valorpag
