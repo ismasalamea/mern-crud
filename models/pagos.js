@@ -11,6 +11,10 @@ const PagoSchema = new mongoose.Schema({
     type: String,
     required: [true, 'Boveda es obligatorio.'],
   },
+  numero_fac: {
+    type: String,
+    required: [true, 'Factura es obligatorio.'],
+  },
   fechapag: {
     type: Date,
     required: [true, 'Fecha Pago es requerido.']
@@ -24,7 +28,6 @@ const PagoSchema = new mongoose.Schema({
     required: [true, 'Valor Pago es requerido.'],
     default: 0
   },
-
 });
 
 // Use the unique validator plugin

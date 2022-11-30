@@ -57,6 +57,7 @@ router.post('/', postLimiter, (req, res) => {
   let newPago = new Pago({
     codboveda:         req.body.codboveda,
     bovedapag:         req.body.bovedapag,
+    numero_fac:        req.body.numero_fac,
     fechapag:          req.body.fechapag,
     fechasig:          req.body.fechasig,
     valorpag:          req.body.valorpag
@@ -71,6 +72,7 @@ router.post('/', postLimiter, (req, res) => {
           _id:           result._id,
           codboveda:     result.codboveda,
           bovedapag:     result.bovedapag,
+          numero_fac:      result.numero_fac,
           fechapag:      result.fechapag,
           fechasig:      result.fechasig,
           valorpag:      result.valorpag
@@ -86,6 +88,10 @@ router.post('/', postLimiter, (req, res) => {
         }
         if (err.errors.bovedapag) {
           res.status(400).json({ success: false, msg: err.errors.bovedapag.message });
+          return;
+        }
+        if (err.errors.numero_fac) {
+          res.status(400).json({ success: false, msg: err.errors.numero_fac.message });
           return;
         }
         if (err.errors.fechapag) {
@@ -113,6 +119,7 @@ router.put('/:id', (req, res) => {
   let updatedPago = {
     codboveda:         req.body.codboveda,
     bovedapag:         req.body.bovedapag,
+    numero_fac:        req.body.numero_fac,
     fechapag:          req.body.fechapag,
     fechasig:          req.body.fechasig,
     valorpag:          req.body.valorpag
@@ -130,6 +137,7 @@ router.put('/:id', (req, res) => {
               _id:              newResult._id,
               codboveda:        newResult.codboveda,
               bovedapag:        newResult.bovedapag,
+              numero_fac:       newResult.numero_fac,
               fechapag:         newResult.fechapag,
               fechasig:         newResult.fechasig,
               valorpag:         newResult.valorpag
@@ -149,6 +157,10 @@ router.put('/:id', (req, res) => {
         }
         if (err.errors.bovedapag) {
           res.status(400).json({ success: false, msg: err.errors.bovedapag.message });
+          return;
+        }
+        if (err.errors.numero_fac) {
+          res.status(400).json({ success: false, msg: err.errors.fechapag.numero_fac });
           return;
         }
         if (err.errors.fechapag) {
@@ -181,6 +193,7 @@ router.delete('/:id', (req, res) => {
           _id:             result._id,
           codboveda:       result.codboveda,
           bovedapag:       result.bovedapag,
+          numero_fac:      result.numero_fac,
           fechapag:        result.fechapag,
           fechasig:        result.fechasig,
           valorpag:        result.valorpag

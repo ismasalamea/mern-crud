@@ -98,6 +98,17 @@ class FormPagos extends Component {
   <Form.Group  widths='equal' >
         <Form.Input
           width={4} 
+          label='Numero de Factura'
+          name='numero_fac'
+          type='text'
+          maxLength='20'
+          required
+//          pattern="\d{4}-\d{2}-\d{2}"
+          onChange={this.handleInputChange}
+        />        
+
+        <Form.Input
+          width={4} 
           label='Fecha de Pago'
           name='fechapag'
           type='date'
