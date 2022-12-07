@@ -10,6 +10,7 @@ class App extends Component {
     super();
     //  this.server = process.env.REACT_APP_API_URL || 'https://cementeriosayausi.herokuapp.com';
     this.server = 'https://cementeriosayausi.herokuapp.com';
+   // this.server = 'http://localhost:3000';
     this.state = {
       users: [],
     }

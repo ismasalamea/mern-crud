@@ -22,7 +22,7 @@ const UserSchema = new mongoose.Schema({
   },
   forma: {
     type: String,
-    required: [true, 'Tipo es requerido.']
+    required: [true, 'Forma es requerido.']
   },  
   cedula:{
     type: String,
@@ -47,7 +47,7 @@ const UserSchema = new mongoose.Schema({
   },
   direccion: {
     type: String,
-    required: [true, 'Responsable es requerido.'],
+    required: [true, 'Direccion es requerido.'],
   },
   correo: {
     type: String,
