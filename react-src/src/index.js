@@ -4,22 +4,13 @@ import ReactDOM from 'react-dom';
 import 'semantic-ui-css/semantic.min.css';
 import './index.css';
 
-import App from './components/App/App';
 import reportWebVitals from './reportWebVitals';
-import { Auth0Provider } from "@auth0/auth0-react";
+import LoginButton from './components/Login/LoginButton';
 
 ReactDOM.render(
-  <Auth0Provider
-    domain="dev-h90g37q8.us.auth0.com"
-    clientId="mkC63v6rclM4Pp6ZcNlXczOT2xlIzcEj"
-    redirectUri={window.location.origin}
-  >
-    <App />
-  </Auth0Provider>,
+    <LoginButton />,
   document.getElementById("root")
 );
-
-
 
 
 /*ReactDOM.render(

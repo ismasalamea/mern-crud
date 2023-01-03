@@ -4,7 +4,6 @@ import axios from 'axios';
 import './App.css';
 import Tablita from '../CustomTable/Tablita';
 
-
 class App extends Component {
   constructor() {
     super();
@@ -13,17 +12,21 @@ class App extends Component {
    // this.server = 'http://localhost:3000';
     this.state = {
       users: [],
+      
     }
+
 
     this.fetchUsers = this.fetchUsers.bind(this);
     this.handleUserAdded = this.handleUserAdded.bind(this);
     this.handleUserUpdated = this.handleUserUpdated.bind(this);
     this.handleUserDeleted = this.handleUserDeleted.bind(this);
+
   }
 
   // Place socket.io code inside here
   componentDidMount() {
     this.fetchUsers();
+
   }
 
   // Fetch data from the back-end
@@ -63,12 +66,13 @@ class App extends Component {
 
   render() {
     return (
-      <div>
+      <div>  
         <div className='App'>
           <p className='App-intro'>Cementerio - GAD de la Parroquia Sayausi</p>
         </div>
+
         <Container>
-          <Tablita
+          <Tablita isLogin={this.state.isSubmitted} 
             data={this.state.users}
             onUserAdded={this.handleUserAdded}
             onUserUpdated={this.handleUserUpdated}

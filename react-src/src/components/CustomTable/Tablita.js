@@ -26,6 +26,7 @@ export default class Tablita extends Component {
 	
 
 	render() {
+
 		const { search } = this.state;
 		const tabla = JSON.parse(JSON.stringify(this.props.data));
 		console.log(tabla)
