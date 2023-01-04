@@ -6,6 +6,7 @@ function LoginButton() {
   // React States
   const [errorMessages, setErrorMessages] = useState({});
   const [isSubmitted, setIsSubmitted] = useState(false);
+  
 
   // User Login info
   const database = [
@@ -58,6 +59,10 @@ function LoginButton() {
     
   // JSX code for login form
   const renderForm = (
+    <div>  
+    <div className='App'>
+      <p className='App-intro'>Cementerio - GAD de la Parroquia Sayausi</p>
+    </div>    
     <div className="app">
       <div className="login-form">
         <div className="title">Ingresar</div>
@@ -80,10 +85,13 @@ function LoginButton() {
     </div>
     </div>
     </div>
+
+    <br />
+      </div>
   );
 
   return (  
-        isSubmitted ? <App/> : renderForm
+        isSubmitted ? <App /> : renderForm
   );
 }
 
