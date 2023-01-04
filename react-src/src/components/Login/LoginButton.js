@@ -6,6 +6,7 @@ function LoginButton() {
   // React States
   const [errorMessages, setErrorMessages] = useState({});
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [Usuario, setUsuario] = useState({});
   
 
   // User Login info
@@ -40,6 +41,7 @@ function LoginButton() {
         // Invalid password
         setErrorMessages({ name: "pass", message: errors.pass });
       } else {
+        setUsuario(userData.username)
         setIsSubmitted(true);
       }
     } else {
@@ -65,7 +67,7 @@ function LoginButton() {
     </div>    
     <div className="app">
       <div className="login-form">
-        <div className="title">Ingresar</div>
+        <div className="title">Credenciales de Acceso </div>
     <div className="form">
       <form onSubmit={handleSubmit}>
         <div className="input-container">
@@ -79,7 +81,7 @@ function LoginButton() {
           {renderErrorMessage("pass")}
         </div>
         <div className="button-container">
-          <input type="submit" />
+          <input type="submit" value="Ingresar" name="Login"/>
         </div>
       </form>
     </div>
@@ -91,7 +93,7 @@ function LoginButton() {
   );
 
   return (  
-        isSubmitted ? <App /> : renderForm
+        isSubmitted ? <App name={Usuario}/> : renderForm
   );
 }
 

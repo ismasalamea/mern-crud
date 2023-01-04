@@ -79,14 +79,13 @@ export default class Tablita extends Component {
 				headerTitle='Totales'
 				buttonTriggerTitle=' Totales Registrados'
             	buttonColor='orange'
-				data={this.props.data}						
-			>	
+				data={this.props.data}>	
 			</ModalTotal>
             </Grid.Column>
             <Grid.Column >	
 			<Input  
-
-			fluid label='Buscar: '
+				fluid
+				label='Buscar: '
 				placeholder={"Escriba ..."}
 				onChange={this.handleInputs}
 				value={search}
@@ -96,7 +95,6 @@ export default class Tablita extends Component {
 				style={{ width: "250px" }}
 			></Input>
             </Grid.Column>
-
             </Grid>
 			<CustomTable
 				data={this.props.data}

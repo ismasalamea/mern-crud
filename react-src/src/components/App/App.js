@@ -5,7 +5,9 @@ import './App.css';
 import Tablita from '../CustomTable/Tablita';
 
 class App extends Component {
-  constructor() {
+  constructor(
+
+  ) {
     super();
     //  this.server = process.env.REACT_APP_API_URL || 'https://cementeriosayausi.herokuapp.com';
     this.server = 'https://cementeriosayausi.herokuapp.com';
@@ -68,11 +70,13 @@ class App extends Component {
     return (
       <div>  
         <div className='App'>
-          <p className='App-intro'>Cementerio - GAD de la Parroquia Sayausi</p>
+          <p className='App-intro'>Cementerio - GAD de la Parroquia Sayausi 
+          </p>
+          <div className='App-subintro' >Usuario: {this.props.name}</div> 
         </div>
 
         <Container>
-          <Tablita isLogin={this.state.isSubmitted} 
+          <Tablita 
             data={this.state.users}
             onUserAdded={this.handleUserAdded}
             onUserUpdated={this.handleUserUpdated}

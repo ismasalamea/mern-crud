@@ -13,7 +13,7 @@
 }
 
 .App-subintro {
-  color: rgba(242, 243, 248, 0.973);
-  font-size: large;
-  font-weight: bold;
+  color: rgba(194, 194, 35, 0.973);
+  font-size:small;
+  text-align: center;
 }
