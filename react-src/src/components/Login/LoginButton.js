@@ -12,12 +12,12 @@ function LoginButton() {
   // User Login info
   const database = [
     {
-      username: "isma",
-      password: "isma"
+      username: "admin2023",
+      password: "admin2023"
     },
     {
-      username: "admin1",
-      password: "admin1"
+      username: "xxxxsssss",
+      password: "tutututut"
     }
   ];
 
