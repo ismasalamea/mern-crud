@@ -392,7 +392,7 @@ class FormUser extends Component {
           value={this.state.observacion}
           onChange={this.handleInputChange}
         />
-        
+
         </Form.Group>
 
         <Header as='h3' block color='blue'>Certificado de Defunción</Header>

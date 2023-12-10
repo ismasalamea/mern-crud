@@ -24,7 +24,7 @@ router.get('/:id', (req, res) => {
       res.json(result);
     })
     .catch((err) => {
-      res.status(404).json({ success: false, msg: `No such user.` });
+      res.status(404).json({ success: false, msg: `Usuario no encontrado` });
     });
 });
 
@@ -57,6 +57,7 @@ router.post('/', postLimiter, (req, res) => {
     telefono:       req.body.telefono,
     estado:         req.body.estado,
     valor:          req.body.valor,
+    observacion:    req.body.observacion,
     certificado:    req.body.certificado
   });
 
@@ -80,6 +81,7 @@ router.post('/', postLimiter, (req, res) => {
           telefono:     result.telefono,     
           estado:       result.estado,
           valor:        result.valor,
+          observacion:  result.observacion,
           certificado:  result.certificado
         }
       });
@@ -168,6 +170,7 @@ router.put('/:id', (req, res) => {
     telefono:       req.body.telefono,
     estado:         req.body.estado,
     valor:          req.body.valor,
+    observacion:    req.body.observacion,
     certificado:    req.body.certificado
   };
 
@@ -194,7 +197,8 @@ router.put('/:id', (req, res) => {
               telefono:       newResult.telefono,        
               estado:         newResult.estado,
               valor:          newResult.valor,
-              certificado:          newResult.certificado
+              observacion:    newResult.observacion,
+              certificado:    newResult.certificado
             }
           });
         })
@@ -250,7 +254,7 @@ router.put('/:id', (req, res) => {
           return;
         }
         if (err.errors.estado) {
-          res.status(400).json({ success: false, msg: err.errors.telefono.message });
+          res.status(400).json({ success: false, msg: err.errors.estado.message });
           return;
         }
         if (err.errors.valor) {
@@ -291,6 +295,7 @@ router.delete('/:id', (req, res) => {
           telefono:     result.telefono,
           estado:       result.estado,
           valor:        result.valor,
+          observacion:  result.observacion,
           certificado:  result.certificado
         }
       });
