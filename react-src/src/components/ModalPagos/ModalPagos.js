@@ -65,11 +65,11 @@ class ModalPagos extends Component {
           <Icon name={this.props.iconName} />
           {this.props.buttonTriggerTitle}
         </Button>}
-        dimmer='inverted'
+     //   dimmer='inverted'
         closeIcon>
 
         <Header icon='money' content={this.props.headerTitle} />
-        <Modal.Content>
+        <Modal.Content scrolling >
           <Header as='h3' block color='orange'>Espacio: {this.props.valores.boveda}</Header>
           <Table celled>
             <Table.Header>

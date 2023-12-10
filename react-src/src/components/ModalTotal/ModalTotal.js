@@ -30,16 +30,16 @@ class ModalTotal extends Component {
         return( 
         <Modal trigger={
       
-            <Button color={this.props.buttonColor} icon>
+            <Button color={this.props.buttonColor} icon >
               <Icon name='chart line' />
                 {this.props.buttonTriggerTitle}
             </Button> }            
-              dimmer='inverted'
+              // dimmer='inverted'
               size='small'
               closeIcon
             >        
             <Modal.Header>
-             <Header.Content> <Icon name='chart line' />{this.props.headerTitle}</Header.Content>
+             <Header.Content scrolling > <Icon name='chart line' />{this.props.headerTitle}</Header.Content>
             </Modal.Header>
             <Modal.Content>
 

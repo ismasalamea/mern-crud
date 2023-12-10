@@ -53,9 +53,9 @@ export default class Tablita extends Component {
 				iconName='user'
 			/>
 			</Grid.Column> 
-			<Grid.Column > 
+			<Grid.Column >
 			<ExcelFile element={
-				<Button color='blue' icon><Icon name='database' /> Exportar a Excel</Button>} filename="base_cementerio_sayausi">
+				<Button color='blue' icon ><Icon name='database' /> Exportar a Excel</Button>} filename="base_cementerio_sayausi">
 				<ExcelSheet data={tabla} name="Hoja1">
 					<ExcelColumn label="Espacio" value="boveda"></ExcelColumn>
 					<ExcelColumn label="Tipo" value="forma"></ExcelColumn>
@@ -79,7 +79,9 @@ export default class Tablita extends Component {
 				headerTitle='Totales'
 				buttonTriggerTitle=' Totales Registrados'
             	buttonColor='orange'
-				data={this.props.data}>	
+				data={this.props.data}
+				>	
+				
 			</ModalTotal>
             </Grid.Column>
             <Grid.Column >	
@@ -91,8 +93,8 @@ export default class Tablita extends Component {
 				value={search}
 				name={"search"}
 				size='large'
-				icon={"search"}
-				style={{ width: "250px" }}
+				icon="search"
+				style={{ heigth: "50px" }}
 			></Input>
             </Grid.Column>
             </Grid>
