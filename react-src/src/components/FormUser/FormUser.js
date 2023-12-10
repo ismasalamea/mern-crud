@@ -45,6 +45,7 @@ class FormUser extends Component {
       telefono: '',
       estado: '',
       valor: '',
+      observacion:'',
       certificado: '',
       formClassName: '',
       formSuccessMessage: '',
@@ -78,6 +79,7 @@ class FormUser extends Component {
             telefono: response.data.telefono,
             estado: response.data.estado,
             valor: response.data.valor,
+            observacion: response.data.observacion,
             certificado: response.data.certificado
           });
         })
@@ -155,6 +157,7 @@ class FormUser extends Component {
       telefono: this.state.telefono,
       estado: this.state.estado,
       valor: this.state.valor,
+      observacion: this.state.observacion,
       certificado: this.state.certificado
     }
 
@@ -189,10 +192,9 @@ class FormUser extends Component {
             telefono: '',
             estado: '',
             valor:'',
+            observacion:'',
             certificado: ''
           });
-           // .then(result=>console.log(result));
-           
           this.props.onUserAdded(response.data.result);
         }
         else {
@@ -375,6 +377,24 @@ class FormUser extends Component {
           onChange={this.handleSelectChange}
         />
         </Form.Group>
+
+
+        <Form.Group widths='equal'>
+        <Form.Input
+          width={100} 
+          label='Observación'
+          type='text'
+          placeholder='Observación'
+          min={0}
+          max={100}
+          name='observacion'
+          required
+          value={this.state.observacion}
+          onChange={this.handleInputChange}
+        />
+        
+        </Form.Group>
+
         <Header as='h3' block color='blue'>Certificado de Defunción</Header>
         <div className="FileUpload">
           <Dropzone  

@@ -51,7 +51,7 @@ const UserSchema = new mongoose.Schema({
   },
   correo: {
     type: String,
-    required: [true, 'Responsable es requerido.'],
+    required: [true, 'Correo es requerido.'],
   },
   telefono: {
     type: String,
@@ -64,8 +64,11 @@ const UserSchema = new mongoose.Schema({
   },
   valor: {
     type: Number,
-    required: [true, 'Valor Adeudado es requerido.'],
+    required: [true, 'Valor adeudado es requerido.'],
     default: 0
+  },
+  observacion: {
+    type: String
   },
   certificado: {
     type: String

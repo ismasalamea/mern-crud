@@ -70,6 +70,7 @@ export default class Tablita extends Component {
 					<ExcelColumn label="Telefono" value="telefono"></ExcelColumn>										
 					<ExcelColumn label="Pagado" value="estado"></ExcelColumn>										
 					<ExcelColumn label="ValorPendiente" value="valor"></ExcelColumn>										
+					<ExcelColumn label="Observacion" value="observacion"></ExcelColumn>										
 				</ExcelSheet>
 			</ExcelFile>
 			</Grid.Column>
