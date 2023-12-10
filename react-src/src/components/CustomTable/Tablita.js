@@ -29,7 +29,6 @@ export default class Tablita extends Component {
 
 		const { search } = this.state;
 		const tabla = JSON.parse(JSON.stringify(this.props.data));
-		console.log(tabla)
 		tabla.forEach(object =>{
 			if(object.estado === false ){
 				object.estado = 'No pagado';

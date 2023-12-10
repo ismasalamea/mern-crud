@@ -78,6 +78,7 @@ class CustomTable extends PureComponent {
 				for (let key of Object.keys(obj)) {
 					try {
 						let value = obj[key];
+						query = query.toString().toLowerCase();
 						let re = new RegExp("W*(" + query + ")W*");
 						if (re.test(value.toString().toLowerCase())) {
 							return true;
