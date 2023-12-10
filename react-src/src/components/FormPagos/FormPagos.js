@@ -1,7 +1,14 @@
 import React, { Component } from 'react';
-import { Message, Button, Form,  Header, Icon } from 'semantic-ui-react';
+import { Message, Button, Form,  Header, Icon, Select } from 'semantic-ui-react';
 import axios from 'axios';
 import './App.css';
+
+const TipoOptions = [
+  { key: 'Arrendamiento', text: 'Arrendamiento', value: 'Arrendamiento' },
+  { key: 'Inhumacion', text: 'Inhumacion', value: 'Inhumacion' },
+  { key: 'Exhumacion', text: 'Exhumacion', value: 'Exhumacion' },
+]
+
 
 class FormPagos extends Component {
 
@@ -9,12 +16,20 @@ class FormPagos extends Component {
     super(props);
 
     this.state = {
+      codboveda:  '',
+      bovedapag:  '',
+      numero_fac: '',
+      fechapag:   '',
+      fechasig:   '',
+      valorpag:   '',
+      tipo:       '',
       formClassName: '',
       formSuccessMessage: '',
       formErrorMessage: '',
     }
 
     this.handleInputChange = this.handleInputChange.bind(this);
+    this.handleSelectChangeTipo = this.handleSelectChangeTipo.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
@@ -25,17 +40,22 @@ class FormPagos extends Component {
     this.setState({ [name]: value });
   }
 
+  handleSelectChangeTipo(e, data) {
+    this.setState({ tipo: data.value });
+  }
+
   handleSubmit(e) {
     // Prevent browser refresh
     e.preventDefault();
    // this.handleImageUpload(this.state.certificado);
     const pagos = {
-      codboveda: this.props.valores._id,
-      bovedapag: this.props.valores.boveda,
+      codboveda:  this.props.valores._id,
+      bovedapag:  this.props.valores.boveda,
       numero_fac: this.state.numero_fac,      
-      fechapag: this.state.fechapag,      
-      fechasig: this.state.fechasig,
-      valorpag: this.state.valorpag
+      fechapag:   this.state.fechapag,      
+      fechasig:   this.state.fechasig,
+      valorpag:   this.state.valorpag,
+      tipo:       this.state.tipo
     }                         
 
     
@@ -96,7 +116,7 @@ class FormPagos extends Component {
           content={formErrorMessage}
         />
 
-  <Form.Group  widths='equal' >
+  <Form.Group   >
         <Form.Input
           width={4} 
           label='Numero de Factura'
@@ -109,7 +129,7 @@ class FormPagos extends Component {
         />        
 
         <Form.Input
-          width={4} 
+          width={3} 
           label='Fecha de Pago'
           name='fechapag'
           type='date'
@@ -119,7 +139,7 @@ class FormPagos extends Component {
           onChange={this.handleInputChange}
         />        
         <Form.Input
-          width={4} 
+          width={3} 
           label='Fecha PROXIMA de Pago'
           name='fechasig'
           type='date'
@@ -130,7 +150,7 @@ class FormPagos extends Component {
         />        
 
         <Form.Input
-        width={3} 
+        width={2} 
         label='Valor'
         type='number'
         placeholder='0,00'
@@ -140,7 +160,16 @@ class FormPagos extends Component {
         value={this.state.valorpag}
         onChange={this.handleInputChange}
      />
-   
+        <Form.Input
+          width={4} 
+          name='tipo'
+          control={Select}
+          label='Tipo'
+          options={TipoOptions}
+          placeholder=''
+          value={this.state.tipo}
+          onChange={this.handleSelectChangeTipo}
+        />
 
 </Form.Group>
 <Button name='user' color={this.props.buttonColor} size='mini' floated='right'>

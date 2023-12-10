@@ -28,6 +28,11 @@ const PagoSchema = new mongoose.Schema({
     required: [true, 'Valor Pago es requerido.'],
     default: 0
   },
+  tipo: {
+    type: String,
+    required: [true, 'Tipo es obligatorio.'],
+  },
+
 });
 
 // Use the unique validator plugin

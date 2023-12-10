@@ -60,7 +60,8 @@ router.post('/', postLimiter, (req, res) => {
     numero_fac:        req.body.numero_fac,
     fechapag:          req.body.fechapag,
     fechasig:          req.body.fechasig,
-    valorpag:          req.body.valorpag
+    valorpag:          req.body.valorpag,
+    tipo:              req.body.tipo
   });
 
   newPago.save()
@@ -72,10 +73,11 @@ router.post('/', postLimiter, (req, res) => {
           _id:           result._id,
           codboveda:     result.codboveda,
           bovedapag:     result.bovedapag,
-          numero_fac:      result.numero_fac,
+          numero_fac:    result.numero_fac,
           fechapag:      result.fechapag,
           fechasig:      result.fechasig,
-          valorpag:      result.valorpag
+          valorpag:      result.valorpag,
+          tipo:          result.tipo
         }
       });
     })
@@ -106,6 +108,10 @@ router.post('/', postLimiter, (req, res) => {
           res.status(400).json({ success: false, msg: err.errors.valorpag.message });
           return;
         }
+        if (err.errors.tipo) {
+          res.status(400).json({ success: false, msg: err.errors.tipo.message });
+          return;
+        }
         // Show failed if all else fails for some reasons
         res.status(500).json({ success: false, msg: `Algo esta mal ${err}` });
       }
@@ -122,7 +128,8 @@ router.put('/:id', (req, res) => {
     numero_fac:        req.body.numero_fac,
     fechapag:          req.body.fechapag,
     fechasig:          req.body.fechasig,
-    valorpag:          req.body.valorpag
+    valorpag:          req.body.valorpag,
+    tipo:              req.body.tipo
   };
 
   Pago.findOneAndUpdate({ _id: req.params.id }, updatedPago, { runValidators: true, context: 'query' })
@@ -140,12 +147,13 @@ router.put('/:id', (req, res) => {
               numero_fac:       newResult.numero_fac,
               fechapag:         newResult.fechapag,
               fechasig:         newResult.fechasig,
-              valorpag:         newResult.valorpag
+              valorpag:         newResult.valorpag,
+              tipo:             newResult.tipo
             }
           });
         })
         .catch((err) => {
-          res.status(500).json({ success: false, msg: `Algo saliooooo mal!. ${err}` });
+          res.status(500).json({ success: false, msg: `Algo salio mal!. ${err}` });
           return;
         });
     })
@@ -175,6 +183,10 @@ router.put('/:id', (req, res) => {
           res.status(400).json({ success: false, msg: err.errors.valorpag.message });
           return;
         }
+        if (err.errors.tipo) {
+          res.status(400).json({ success: false, msg: err.errors.tipo.message });
+          return;
+        }
         // Show failed if all else fails for some reasons
         res.status(500).json({ success: false, msg: `Algo salios mal. ${err}` });
       }
@@ -196,7 +208,8 @@ router.delete('/:id', (req, res) => {
           numero_fac:      result.numero_fac,
           fechapag:        result.fechapag,
           fechasig:        result.fechasig,
-          valorpag:        result.valorpag
+          valorpag:        result.valorpag,
+          tipo:            result.tipo
         }
       });
     })

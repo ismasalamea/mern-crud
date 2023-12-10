@@ -78,12 +78,13 @@ class ComprobantePago extends Component {
               <Text>Comprobante: </Text>
               <Text>Cementerio del GAD de Sayausi</Text>
               <Text>Fecha de Pago: {this.props.pagos.fechapag.split("T")[0]}</Text>
-
+              <Text>Tipo de Pago: {this.props.pagos.tipo}</Text>
             </View>
             <View style={styles.section}>
                 <Text>Boveda: {this.props.valores.boveda}</Text>
                 <Text>Nombres: {this.props.valores.nombre}</Text>
                 <Text>Apellidos: {this.props.valores.apellido}</Text>
+                <Text>Tipo: {this.props.valores.tipo}</Text>
             </View>
             <View style={styles.valor}>
                 <Text>Valor: {this.props.pagos.valorpag}</Text>
@@ -93,6 +94,7 @@ class ComprobantePago extends Component {
                 <Text>{this.props.valores.cedula}</Text>
                 <Text>{this.props.valores.responsable}</Text>
                 <Text>Fecha PROXIMO Pago: {this.props.pagos.fechasig.split("T")[0]}</Text>
+                
             </View>
           </Page>
         </Document>

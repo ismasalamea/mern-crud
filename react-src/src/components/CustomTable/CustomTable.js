@@ -175,8 +175,8 @@ class CustomTable extends PureComponent {
 									server={this.props.server}
 									iconName='dollar'
 									buttonSize='mini'
-									labels={["numero_fac","fechapag", "fechasig", "valorpag"]}
-									headers={["Numero Factura", "Fecha de Pago", "Proximo Pago", "Valor", "Accion"]}
+									labels={["numero_fac","fechapag", "fechasig", "valorpag", "tipo"]}
+									headers={["Numero Factura", "Fecha de Pago", "Proximo Pago", "Valor", "Tipo", "Accion"]}
 								/> 
 								<ModalUser
 									headerTitle='Editar'
