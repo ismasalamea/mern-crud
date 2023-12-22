@@ -5,8 +5,10 @@ import './App.css';
 
 const TipoOptions = [
   { key: 'Arrendamiento', text: 'Arrendamiento', value: 'Arrendamiento' },
-  { key: 'Inhumacion', text: 'Inhumacion', value: 'Inhumacion' },
   { key: 'Exhumacion', text: 'Exhumacion', value: 'Exhumacion' },
+  { key: 'Inhumacion', text: 'Inhumacion', value: 'Inhumacion' },
+  { key: 'Propia', text: 'Propia', value: 'Propia' },
+  
 ]
 
 

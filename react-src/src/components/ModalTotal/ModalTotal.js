@@ -5,7 +5,6 @@ class ModalTotal extends Component {
 
     getLengthOfObject = (obj) => { 
         let lengthOfObject = Object.keys(obj).length; 
-//        console.log(lengthOfObject);
         return lengthOfObject;
       }
     
@@ -45,10 +44,7 @@ class ModalTotal extends Component {
 
 
             <Table celled>
-
             <Table.Body celled>
-            
-
             <Table.Row >
             <Table.Cell >
               <Header as='h3'><Icon name='product hunt' /> <Header.Content>Cantidad de Bovedas:</Header.Content></Header>
@@ -57,8 +53,6 @@ class ModalTotal extends Component {
               <Label size='huge' >{cantbovedas}</Label>
             </Table.Cell>
             </Table.Row>
-
-
             <Table.Row >
             <Table.Cell >
               <Header as='h3'><Icon name='product hunt' /> <Header.Content>Cantidad de Nichos:</Header.Content></Header>
@@ -67,9 +61,6 @@ class ModalTotal extends Component {
               <Label size='huge' >{cantnicho}</Label>
             </Table.Cell>
             </Table.Row>
-
-
-
             <Table.Row >
             <Table.Cell >
             <Header as='h2'>
@@ -78,9 +69,7 @@ class ModalTotal extends Component {
             <Table.Cell >
                 <Label size='huge' >{suma}</Label>
             </Table.Cell>
-            </Table.Row>
-
-            
+            </Table.Row>         
             <Table.Row >
             <Table.Cell >
               <Header as='h3'><Icon name='product hunt' /> <Header.Content>Valor Pendiente de Espacios Propias:</Header.Content></Header>
@@ -89,8 +78,6 @@ class ModalTotal extends Component {
               <Label size='huge' >{sumapropias}</Label>
             </Table.Cell>
             </Table.Row>
-
-
             <Table.Row >          
             <Table.Cell >
               <Header as='h3'><Icon name='warehouse' /> <Header.Content>Valor Pendiente de Espacios Arrendadas:</Header.Content></Header>
@@ -99,7 +86,6 @@ class ModalTotal extends Component {
               <Label size='huge' >{sumaarrendadas}</Label>
             </Table.Cell>
             </Table.Row>
-
             <Table.Row > 
             <Table.Cell >
               <Header as='h3'><Icon name='eye slash outline' /> <Header.Content>Valor Pendiente de Espacios no definidos:</Header.Content></Header>
@@ -108,7 +94,6 @@ class ModalTotal extends Component {
             <Label size='huge' >{sumasindefinir}</Label>
             </Table.Cell>
             </Table.Row>
-            
             <Table.Row > 
             <Table.Cell >
               <Header as='h2'><Icon name='usd' /> <Header.Content>Total Valores Pendientes:</Header.Content></Header>
@@ -118,14 +103,7 @@ class ModalTotal extends Component {
             </Table.Cell>
             </Table.Row>            
             </Table.Body>
-
-
-
-
-
             </Table>
-
-
                </Modal.Content>
         </Modal> 
         );

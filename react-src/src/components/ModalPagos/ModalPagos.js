@@ -120,8 +120,7 @@ class ModalPagos extends Component {
                 <Table.Cell />
                 <Table.Cell textAlign='right' > Total : </Table.Cell>
                 <Table.Cell ><div className={Styles.footer}>{sumall}	</div></Table.Cell>
-                <Table.Cell />
-  
+                <Table.Cell />  
               </Table.Row >
             </Table.Footer>
           </Table>
